@@ -1,0 +1,23 @@
+<Project>
+  <PropertyGroup>
+    <!-- Centralized version management for Axlis packages -->
+    <AxlisVersion>0.1.0-preview</AxlisVersion>
+
+    <!-- Common package metadata -->
+    <Authors>Mario Arce</Authors>
+    <Copyright>Copyright © Mario Arce 2026</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/marioarce/Axlis</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/marioarce/Axlis</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+    <!-- Code style -->
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+</Project>

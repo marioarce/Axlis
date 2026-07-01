@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+
+    <!-- NuGet Package Metadata -->
+    <PackageId>Axlis.Core</PackageId>
+    <PackageVersion>$(AxlisVersion)</PackageVersion>
+    <Title>Axlis — Core</Title>
+    <Description>Domain model, field types, ExtendedItem, Axes adapter, ItemConverter, and System/Common Sitecore templates for the Axlis ORM.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>csharp;dotnet;sitecore;headless;graphql;orm;axlis;core</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Axlis.Abstractions\Axlis.Abstractions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>

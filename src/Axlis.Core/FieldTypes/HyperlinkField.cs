@@ -37,7 +37,6 @@ public class HyperlinkField : BaseField, IHyperlinkField
             Href = InnerField.StringValue,
             Text = InnerField.Text,
             Linktype = InnerField.LinkType,
-            Target = InnerField.Target,
             Title = InnerField.Title
         };
     }

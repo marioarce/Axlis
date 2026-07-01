@@ -7,7 +7,7 @@ namespace Axlis.Core;
 /// Base class for all strongly-typed Sitecore template POCOs.
 /// Extends <see cref="BaseItem"/> with <see cref="Axes"/> tree traversal,
 /// <see cref="GetCacheKeyValue"/> cache-key support, and a
-/// <see cref="GetField{TField}"/> helper for declarative field accessors.
+/// <see cref="GetField{TField}(string)"/> helper for declarative field accessors.
 /// <para>
 /// Decorate subclasses with <c>[SitecoreTemplate]</c> and properties with
 /// <c>[SitecoreField]</c> for codegen-readiness.
@@ -18,7 +18,7 @@ public class ExtendedItem : BaseItem, IExtendedItem
     // Ambient lazy-loader injected by the Axlis (facade) package on startup.
     private static IItemLazyLoader? _lazyLoader;
 
-    /// <summary>Initializes the ambient lazy-loader used by <see cref="ExtendedItem.InnerItem"/> and <see cref="AxesAdapter"/>.</summary>
+    /// <summary>Initializes the ambient lazy-loader used by <see cref="ExtendedItem.RawInnerItem"/> and <see cref="AxesAdapter"/>.</summary>
     /// <remarks>Call this once at application startup, typically inside <c>AddAxlis()</c>.</remarks>
     public static void Initialize(IItemLazyLoader loader) => _lazyLoader = loader;
 

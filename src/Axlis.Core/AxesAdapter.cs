@@ -29,7 +29,10 @@ public sealed class AxesAdapter : IAxes
             }
 
             var parent = _item.Parent;
-            if (parent is not Item parentItem) return null;
+            if (parent is not Item parentItem)
+            {
+                return null;
+            }
 
             var extended = new ExtendedItem(parentItem);
             return extended;
@@ -47,7 +50,10 @@ public sealed class AxesAdapter : IAxes
             }
 
             var children = _item.ChildrenData?.Children;
-            if (children == null) return null;
+            if (children == null)
+            {
+                return null;
+            }
 
             var result = new List<IExtendedItem>(children.Count);
             foreach (var child in children)
@@ -67,7 +73,10 @@ public sealed class AxesAdapter : IAxes
         get
         {
             var parentChildren = Parent?.Axes.Children;
-            if (parentChildren == null) return null;
+            if (parentChildren == null)
+            {
+                return null;
+            }
 
             var result = new List<IExtendedItem>(parentChildren.Count);
             foreach (var sibling in parentChildren)
@@ -85,13 +94,19 @@ public sealed class AxesAdapter : IAxes
         IExtendedItem? cursor = new ExtendedItem(_item);
         while (cursor != null)
         {
-            if (cursor is T typed) return typed;
+            if (cursor is T typed)
+            {
+                return typed;
+            }
 
             // Try to cast via re-instantiation
             if (cursor.InnerItem is Item cursorItem)
             {
                 var asT = TryCast<T>(cursorItem);
-                if (asT != null) return asT;
+                if (asT != null)
+                {
+                    return asT;
+                }
             }
 
             cursor = cursor.Axes.Parent;
@@ -104,7 +119,10 @@ public sealed class AxesAdapter : IAxes
     public IReadOnlyList<T> GetChildren<T>(Func<T, bool>? predicate = null) where T : class, IExtendedItem
     {
         var children = Children;
-        if (children == null) return Array.Empty<T>();
+        if (children == null)
+        {
+            return Array.Empty<T>();
+        }
 
         var result = new List<T>();
         foreach (var child in children)
@@ -129,12 +147,18 @@ public sealed class AxesAdapter : IAxes
 
     private void TryUpdateAxes()
     {
-        if (_item.IsFullyLoaded || _loader == null) return;
+        if (_item.IsFullyLoaded || _loader == null)
+        {
+            return;
+        }
 
         try
         {
             var fetched = _loader.LoadItem(_item.Id);
-            if (fetched == null) return;
+            if (fetched == null)
+            {
+                return;
+            }
 
             var fetchedChildren = fetched.ChildrenData?.Children;
             var fetchedTotal = fetched.ChildrenData?.TotalCount;
@@ -163,7 +187,10 @@ public sealed class AxesAdapter : IAxes
     {
         var wrapper = new ExtendedItem(item);
         var children = wrapper.Axes.Children;
-        if (children == null) return;
+        if (children == null)
+        {
+            return;
+        }
 
         foreach (var child in children)
         {
@@ -192,9 +219,15 @@ public sealed class AxesAdapter : IAxes
 
     private static bool IsRootPath(string? path)
     {
-        if (string.IsNullOrWhiteSpace(path)) return false;
+        if (string.IsNullOrWhiteSpace(path))
+        {
+            return false;
+        }
         var normalized = path.TrimEnd('/');
-        if (normalized.Length == 0) normalized = "/";
+        if (normalized.Length == 0)
+        {
+            normalized = "/";
+        }
         return string.Equals(normalized, "/sitecore", StringComparison.OrdinalIgnoreCase);
     }
 }

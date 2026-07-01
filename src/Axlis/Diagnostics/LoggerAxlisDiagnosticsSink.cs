@@ -10,10 +10,10 @@ namespace Axlis.Diagnostics;
 /// </summary>
 public sealed class LoggerAxlisDiagnosticsSink : IAxlisDiagnosticsSink
 {
-    private readonly ILogger<LoggerAxlisDiagnosticsSink> _logger;
+    private readonly ILogger<LoggerAxlisDiagnosticsSink>? _logger;
 
     /// <summary>Initializes a new instance of <see cref="LoggerAxlisDiagnosticsSink"/>.</summary>
-    public LoggerAxlisDiagnosticsSink(ILogger<LoggerAxlisDiagnosticsSink> logger)
+    public LoggerAxlisDiagnosticsSink(ILogger<LoggerAxlisDiagnosticsSink>? logger = null)
     {
         _logger = logger;
     }
@@ -24,19 +24,19 @@ public sealed class LoggerAxlisDiagnosticsSink : IAxlisDiagnosticsSink
         switch (evt.Severity)
         {
             case DiagnosticSeverity.Error:
-                _logger.LogError(
+                _logger?.LogError(
                     "Axlis [{Member}]: {Message} (data: {@Data})",
                     evt.CallerMember, evt.Message, evt.Data);
                 break;
 
             case DiagnosticSeverity.Warning:
-                _logger.LogWarning(
+                _logger?.LogWarning(
                     "Axlis [{Member}]: {Message}",
                     evt.CallerMember, evt.Message);
                 break;
 
             default:
-                _logger.LogDebug(
+                _logger?.LogDebug(
                     "Axlis [{Member}]: {Message}",
                     evt.CallerMember, evt.Message);
                 break;

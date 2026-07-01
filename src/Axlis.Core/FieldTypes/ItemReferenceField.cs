@@ -21,7 +21,10 @@ public class ItemReferenceField : BaseField, IItemReferenceField
     {
         get
         {
-            if (IsEmpty) return null;
+            if (IsEmpty)
+            {
+                return null;
+            }
             return _cached ??= BuildValue();
         }
     }
@@ -30,7 +33,10 @@ public class ItemReferenceField : BaseField, IItemReferenceField
     public T? AsItem<T>() where T : class, IBaseItem
     {
         var target = InnerField.TargetItem;
-        if (target == null) return null;
+        if (target == null)
+        {
+            return null;
+        }
 
         var instance = (T?)Activator.CreateInstance(typeof(T));
         instance?.SetInnerItem(target);

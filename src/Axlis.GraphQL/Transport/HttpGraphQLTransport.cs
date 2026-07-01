@@ -17,6 +17,10 @@ public sealed class HttpGraphQLTransport : IGraphQLTransport
     private const string Tag = "graphql.transport";
     private const string MediaType = "application/json";
 
+    private const int JsonMaxDepth = 256;
+    private const int ContentPreviewMaxLength = 500;
+    private const int ErrorContentPreviewMaxLength = 200;
+
     private readonly HttpClient _httpClient;
     private readonly ILogger<HttpGraphQLTransport>? _logger;
 
@@ -24,7 +28,7 @@ public sealed class HttpGraphQLTransport : IGraphQLTransport
     {
         PropertyNameCaseInsensitive = true,
         PropertyNamingPolicy = null,
-        MaxDepth = 256,
+        MaxDepth = JsonMaxDepth,
         AllowTrailingCommas = true,
         ReadCommentHandling = JsonCommentHandling.Skip,
         ReferenceHandler = ReferenceHandler.IgnoreCycles
@@ -88,7 +92,7 @@ public sealed class HttpGraphQLTransport : IGraphQLTransport
                 _logger?.LogError(
                     "{Tag}: HTTP {StatusCode} — {Preview}",
                     Tag, statusCode,
-                    content?.Length > 500 ? content[..500] : content);
+                    content?.Length > ContentPreviewMaxLength ? content[..ContentPreviewMaxLength] : content);
 
                 throw new GraphQLClientException(
                     $"HTTP request failed with status {statusCode}: {httpResponse.ReasonPhrase}");
@@ -124,7 +128,7 @@ public sealed class HttpGraphQLTransport : IGraphQLTransport
             _logger?.LogError(ex,
                 "{Tag}: Deserialization failed. Content length: {Length}. Preview: {Preview}",
                 Tag, content?.Length ?? 0,
-                content?.Length > 200 ? content[..200] : content);
+                content?.Length > ErrorContentPreviewMaxLength ? content[..ErrorContentPreviewMaxLength] : content);
 
             throw new GraphQLClientException("Failed to deserialize GraphQL response.", ex);
         }

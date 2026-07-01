@@ -59,7 +59,10 @@ public static class GraphQLQueryBuilder
     /// </summary>
     private static string EscapeGraphQLString(string value)
     {
-        if (string.IsNullOrEmpty(value)) return value;
+        if (string.IsNullOrEmpty(value))
+        {
+            return value;
+        }
 
         return value
             .Replace("\\", "\\\\")

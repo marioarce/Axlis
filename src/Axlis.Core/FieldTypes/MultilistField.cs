@@ -19,7 +19,10 @@ public class MultilistField : BaseField, IMultilistField
     {
         get
         {
-            if (InnerField.TargetIds == null) return Array.Empty<string>();
+            if (InnerField.TargetIds == null)
+            {
+                return Array.Empty<string>();
+            }
             var result = new List<string>();
             foreach (var id in InnerField.TargetIds)
             {
@@ -33,7 +36,10 @@ public class MultilistField : BaseField, IMultilistField
     public IReadOnlyList<T> As<T>() where T : class, IBaseItem
     {
         var items = InnerField.TargetItems;
-        if (items == null || items.Count == 0) return Array.Empty<T>();
+        if (items == null || items.Count == 0)
+        {
+            return Array.Empty<T>();
+        }
 
         var result = new List<T>(items.Count);
         foreach (var item in items)

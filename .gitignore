@@ -44,6 +44,9 @@ ScaffoldingReadMe.txt
 *~
 CodeCoverage/
 
+# Mono/Visual Studio telemetry
+.mono/
+
 # MSBuild Binary and Structured Log
 *.binlog
 

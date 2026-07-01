@@ -10,6 +10,7 @@
     <PackageProjectUrl>https://github.com/marioarce/Axlis</PackageProjectUrl>
     <RepositoryUrl>https://github.com/marioarce/Axlis</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <PackageIcon>icon.png</PackageIcon>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
@@ -20,4 +21,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
+
+  <!-- Pack icon.png (place a 128x128 PNG at the repo root before publishing to NuGet) -->
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)icon.png" Pack="true" PackagePath="\" Condition="Exists('$(MSBuildThisFileDirectory)icon.png')" />
+  </ItemGroup>
+
 </Project>

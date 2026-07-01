@@ -23,7 +23,7 @@ public class ExtendedItem : BaseItem, IExtendedItem
     public static void Initialize(IItemLazyLoader loader) => _lazyLoader = loader;
 
     /// <summary>Clears the ambient lazy-loader (for testing).</summary>
-    internal static void Reset() => _lazyLoader = null;
+    public static void Reset() => _lazyLoader = null;
 
     /// <summary>Initializes an empty instance (inner item set later).</summary>
     public ExtendedItem() { }
@@ -58,7 +58,8 @@ public class ExtendedItem : BaseItem, IExtendedItem
         var sb = new StringBuilder(64);
         sb.Append(GetType().Name);
         sb.Append('|');
-        sb.Append(ItemTemplate.NormalizeGuid(Id) ?? "null");
+        var normalizedId = ItemTemplate.NormalizeGuid(Id);
+        sb.Append(string.IsNullOrEmpty(normalizedId) ? "null" : normalizedId);
         sb.Append('|');
         sb.Append(Name?.ToLowerInvariant() ?? "null");
         sb.Append('|');

@@ -128,9 +128,9 @@ dotnet_separate_import_directive_groups = false
 csharp_style_namespace_declarations = file_scoped:warning
 
 # var usage
-csharp_style_var_for_built_in_types = false:suggestion
+csharp_style_var_for_built_in_types = true:suggestion
 csharp_style_var_when_type_is_apparent = true:suggestion
-csharp_style_var_elsewhere = false:suggestion
+csharp_style_var_elsewhere = true:suggestion
 
 # Usings
 csharp_prefer_simple_using_statement = true:suggestion

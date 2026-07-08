@@ -87,11 +87,22 @@ public sealed class Item : IItem
     {
         get
         {
-            if (_childrenData == null) return false;
-            if (!_childrenData.Loaded) return false;
-            if (_childrenData.Children == null || _childrenData.Children.Count == 0) return false;
-            if (_childrenData.TotalCount.HasValue && _childrenData.Children.Count < _childrenData.TotalCount.Value)
+            if (_childrenData == null)
+            {
                 return false;
+            }
+            if (!_childrenData.Loaded)
+            {
+                return false;
+            }
+            if (_childrenData.Children == null || _childrenData.Children.Count == 0)
+            {
+                return false;
+            }
+            if (_childrenData.TotalCount.HasValue && _childrenData.Children.Count < _childrenData.TotalCount.Value)
+            {
+                return false;
+            }
             return true;
         }
     }
@@ -144,9 +155,15 @@ public sealed class Item : IItem
 
     private static bool IsRootPath(string? path)
     {
-        if (string.IsNullOrWhiteSpace(path)) return false;
+        if (string.IsNullOrWhiteSpace(path))
+        {
+            return false;
+        }
         var normalized = path.TrimEnd('/');
-        if (normalized.Length == 0) normalized = "/";
+        if (normalized.Length == 0)
+        {
+            normalized = "/";
+        }
         return string.Equals(normalized, "/sitecore", StringComparison.OrdinalIgnoreCase);
     }
 }

@@ -22,7 +22,10 @@ public class HyperlinkField : BaseField, IHyperlinkField
     {
         get
         {
-            if (IsEmpty) return null;
+            if (IsEmpty)
+            {
+                return null;
+            }
 
             return _cached ??= BuildValue();
         }

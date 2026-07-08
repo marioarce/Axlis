@@ -14,8 +14,14 @@ public sealed class ExtendedItemIdComparer : IEqualityComparer<ExtendedItem>
     /// <inheritdoc/>
     public bool Equals(ExtendedItem? x, ExtendedItem? y)
     {
-        if (ReferenceEquals(x, y)) return true;
-        if (x is null || y is null) return false;
+        if (ReferenceEquals(x, y))
+        {
+            return true;
+        }
+        if (x is null || y is null)
+        {
+            return false;
+        }
         return string.Equals(
             ItemTemplate.NormalizeGuid(x.Id),
             ItemTemplate.NormalizeGuid(y.Id),

@@ -55,7 +55,7 @@ public class ExtendedItem : BaseItem, IExtendedItem
     /// <inheritdoc/>
     public string GetCacheKeyValue()
     {
-        var sb = new StringBuilder(64);
+        var sb = new StringBuilder(InitialStringBuilderCapacity);
         sb.Append(GetType().Name);
         sb.Append('|');
         var normalizedId = ItemTemplate.NormalizeGuid(Id);
@@ -67,6 +67,8 @@ public class ExtendedItem : BaseItem, IExtendedItem
         sb.Append(RawInnerItem?.Version.ToString() ?? "null");
         return sb.ToString();
     }
+
+    private const int InitialStringBuilderCapacity = 64;
 
     /// <summary>
     /// Returns a strongly-typed field wrapper of type <typeparamref name="TField"/> for the given field name.

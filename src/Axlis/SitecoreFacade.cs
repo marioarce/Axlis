@@ -101,7 +101,10 @@ public sealed class SitecoreFacade : ISitecoreFacade
             "{Tag}: GetItemsByPaths<{Type}> — {Count} path(s)",
             Tag, typeof(T).Name, pathList.Count);
 
-        if (pathList.Count == 0) return Enumerable.Empty<T?>();
+        if (pathList.Count == 0)
+        {
+            return Enumerable.Empty<T?>();
+        }
 
         try
         {
@@ -275,7 +278,10 @@ public sealed class SitecoreFacade : ISitecoreFacade
     /// </summary>
     private static T? MapToTyped<T>(IItem? item) where T : class, IBaseItem
     {
-        if (item == null) return null;
+        if (item == null)
+        {
+            return null;
+        }
         var wrapper = Activator.CreateInstance<T>();
         wrapper.SetInnerItem(item);
         return wrapper;
@@ -315,7 +321,10 @@ public sealed class SitecoreFacade : ISitecoreFacade
 
     private void AddDiagnostic(AxlisDiagnostics diagnostics, string message, DiagnosticSeverity severity)
     {
-        if (!_diagnosticsEnabled) return;
+        if (!_diagnosticsEnabled)
+        {
+            return;
+        }
         diagnostics.Add(message, severity);
         _diagnosticsSink?.OnEvent(new AxlisDiagnosticEvent
         {

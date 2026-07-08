@@ -10,20 +10,25 @@ namespace Axlis.Core;
 /// </summary>
 public static class ItemConverter
 {
+    private const int InitialDepth = 1;
+
     /// <summary>
     /// Converts a top-level <see cref="GraphQLItemData"/> to a domain <see cref="Item"/>.
     /// </summary>
     /// <param name="itemData">The GraphQL item data to convert.</param>
     /// <returns>The converted <see cref="Item"/>, or <c>null</c> if <paramref name="itemData"/> is <c>null</c>.</returns>
     public static Item? ToItem(GraphQLItemData? itemData)
-        => ToItem(itemData, processedIds: null, currentDepth: 1);
+        => ToItem(itemData, processedIds: null, currentDepth: InitialDepth);
 
     /// <summary>
     /// Converts a list of ancestor <see cref="GraphQLItemData"/> to a list of <see cref="Item"/> objects.
     /// </summary>
     public static List<Item>? ToAncestorItems(List<GraphQLItemData>? ancestors)
     {
-        if (ancestors == null || ancestors.Count == 0) return null;
+        if (ancestors == null || ancestors.Count == 0)
+        {
+            return null;
+        }
 
         return ancestors
             .Where(a => a != null)
@@ -37,7 +42,10 @@ public static class ItemConverter
         HashSet<string>? processedIds,
         int currentDepth)
     {
-        if (itemData == null) return null;
+        if (itemData == null)
+        {
+            return null;
+        }
 
         processedIds ??= new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
@@ -101,7 +109,10 @@ public static class ItemConverter
         HashSet<string>? processedIds,
         int currentDepth)
     {
-        if (fields == null || fields.Count == 0) return null;
+        if (fields == null || fields.Count == 0)
+        {
+            return null;
+        }
 
         var result = new List<ItemTemplateField>(fields.Count);
         foreach (var fieldData in fields)

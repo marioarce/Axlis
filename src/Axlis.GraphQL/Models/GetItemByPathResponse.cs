@@ -1,5 +1,5 @@
-using Axlis.Core.GraphQL;
 using System.Text.Json.Serialization;
+using Axlis.Core.GraphQL;
 
 namespace Axlis.GraphQL.Models;
 

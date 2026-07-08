@@ -25,7 +25,10 @@ public class ImageField : BaseField, IImageField
     {
         get
         {
-            if (IsEmpty) return null;
+            if (IsEmpty)
+            {
+                return null;
+            }
             return _cached ??= new WebImage
             {
                 AlternativeText = InnerField.Description ?? string.Empty,

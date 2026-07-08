@@ -1,0 +1,155 @@
+# Axlis EditorConfig
+# Based on Microsoft .NET Design Guidelines with Google C# Style Guide enhancements
+# Custom: No space after if/for/while statements
+
+root = true
+
+# All files
+[*]
+charset = utf-8
+end_of_line = crlf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{csproj,props,targets,xml}]
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false
+
+# C# files
+[*.cs]
+
+# Core .NET formatting (Microsoft standards)
+indent_style = space
+indent_size = 4
+
+# New line preferences
+end_of_line = crlf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Custom PowerCSharp rules
+# NO space after if/for/while (user requirement)
+dotnet_style_space_after_keywords_in_control_flow_statements = false
+
+# Space after commas (keep Google standard)
+dotnet_style_space_after_comma = true
+
+# No space after opening parenthesis or before closing (Google standard)
+dotnet_style_space_within_parentheses = false
+dotnet_style_space_between_parentheses = false
+
+# One space between operators (Google standard)
+dotnet_style_space_around_binary_operators = before_and_after
+
+# Braces (Google standard - always use braces)
+csharp_new_line_before_open_brace = all
+csharp_new_line_before_else = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
+csharp_new_line_before_members_in_object_initializers = true
+csharp_new_line_before_members_in_anonymous_types = true
+
+# Expression body preferences (Google guidance)
+# Use => for single-line read-only properties, not for methods
+csharp_prefer_expression_bodied_properties = true:silent
+csharp_prefer_expression_bodied_methods = false:silent
+csharp_prefer_expression_bodied_constructors = false:silent
+csharp_prefer_expression_bodied_operators = false:silent
+
+# Naming conventions (Google + Microsoft)
+dotnet_naming_rule.interface_should_be_prefixed_with_i.severity = suggestion
+dotnet_naming_rule.interface_should_be_prefixed_with_i.symbols = interfaces
+dotnet_naming_rule.interface_should_be_prefixed_with_i.style = prefixed_with_i
+dotnet_naming_symbols.interfaces.applicable_kinds = interface
+dotnet_naming_style.prefixed_with_i.required_prefix = I
+
+dotnet_naming_rule.types_should_be_pascal_case.severity = suggestion
+dotnet_naming_rule.types_should_be_pascal_case.symbols = types
+dotnet_naming_rule.types_should_be_pascal_case.style = pascal_case
+dotnet_naming_symbols.types.applicable_kinds = class, struct, interface, enum
+dotnet_naming_style.pascal_case.capitalization = pascal_case
+
+dotnet_naming_rule.members_should_be_pascal_case.severity = suggestion
+dotnet_naming_rule.members_should_be_pascal_case.symbols = members
+dotnet_naming_rule.members_should_be_pascal_case.style = pascal_case
+dotnet_naming_symbols.members.applicable_kinds = method, property, event, field
+dotnet_naming_symbols.members.applicable_accessibilities = public, internal, protected, protected_internal, private
+dotnet_naming_symbols.members.required_modifiers = readonly
+
+# Private fields should be _camelCase
+dotnet_naming_rule.private_fields_should_be_camel_case_with_underscore.severity = suggestion
+dotnet_naming_rule.private_fields_should_be_camel_case_with_underscore.symbols = private_fields
+dotnet_naming_rule.private_fields_should_be_camel_case_with_underscore.style = camel_case_with_underscore
+dotnet_naming_symbols.private_fields.applicable_kinds = field
+dotnet_naming_symbols.private_fields.applicable_accessibilities = private
+dotnet_naming_style.camel_case_with_underscore.required_prefix = _
+dotnet_naming_style.camel_case_with_underscore.capitalization = camel_case
+
+# Local variables and parameters should be camelCase
+dotnet_naming_rule.locals_should_be_camel_case.severity = suggestion
+dotnet_naming_rule.locals_should_be_camel_case.symbols = locals
+dotnet_naming_rule.locals_should_be_camel_case.style = camel_case
+dotnet_naming_symbols.locals.applicable_kinds = parameter, local
+dotnet_naming_style.camel_case.capitalization = camel_case
+
+# Constants should be PascalCase (following Google's approach over traditional UPPER_CASE)
+dotnet_naming_rule.constants_should_be_pascal_case.severity = suggestion
+dotnet_naming_rule.constants_should_be_pascal_case.symbols = constants
+dotnet_naming_rule.constants_should_be_pascal_case.style = pascal_case
+dotnet_naming_symbols.constants.applicable_kinds = field, local
+dotnet_naming_symbols.constants.required_modifiers = const
+dotnet_naming_style.pascal_case.capitalization = pascal_case
+
+# Language rules
+csharp_indent_case_contents = true
+csharp_indent_switch_labels = true
+csharp_indent_labels = flush_left
+
+# Organize usings (Google standard: System first, then alphabetical)
+dotnet_sort_system_directives_first = true
+dotnet_separate_import_directive_groups = false
+
+# File layout (Google standard: one class per file, filename matches class name)
+# This is enforced by convention rather than EditorConfig rules
+
+# Member ordering (Google standard)
+# This will be enforced manually during refactoring:
+# 1. Nested classes, enums, delegates, events
+# 2. Static/const/readonly fields
+# 3. Fields and properties
+# 4. Constructors and finalizers
+# 5. Methods
+# Within each group: Public → Internal → Protected internal → Protected → Private
+
+# Axlis-specific additions
+# File-scoped namespaces (matches project convention)
+csharp_style_namespace_declarations = file_scoped:warning
+
+# var usage
+csharp_style_var_for_built_in_types = true:suggestion
+csharp_style_var_when_type_is_apparent = true:suggestion
+csharp_style_var_elsewhere = true:suggestion
+
+# Usings
+csharp_prefer_simple_using_statement = true:suggestion
+
+# Primary constructors — keep off for library code clarity
+csharp_style_prefer_primary_constructors = false:suggestion
+
+# Code quality
+dotnet_style_qualification_for_field = false:suggestion
+dotnet_style_qualification_for_property = false:suggestion
+dotnet_style_qualification_for_method = false:suggestion
+dotnet_style_qualification_for_event = false:suggestion
+dotnet_style_prefer_is_null_check_over_reference_equality_method = true:warning
+dotnet_style_object_initializer = true:suggestion
+dotnet_style_collection_initializer = true:suggestion
+dotnet_style_explicit_tuple_names = true:suggestion
+dotnet_style_prefer_auto_properties = true:suggestion
+dotnet_style_null_propagation = true:suggestion
+dotnet_style_coalesce_expression = true:suggestion
+
+# Nullability diagnostics
+dotnet_diagnostic.CS8618.severity = warning

@@ -1,5 +1,7 @@
 # Axlis
 
+![Axlis Banner](assets/banner.png)
+
 [![CI](https://github.com/marioarce/Axlis/actions/workflows/ci.yml/badge.svg)](https://github.com/marioarce/Axlis/actions/workflows/ci.yml)
 [![NuGet](https://img.shields.io/nuget/v/Axlis?label=Axlis)](https://www.nuget.org/packages/Axlis)
 [![NuGet](https://img.shields.io/nuget/v/Axlis.Core?label=Axlis.Core)](https://www.nuget.org/packages/Axlis.Core)

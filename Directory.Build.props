@@ -10,7 +10,7 @@
     <PackageProjectUrl>https://github.com/marioarce/Axlis</PackageProjectUrl>
     <RepositoryUrl>https://github.com/marioarce/Axlis</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageIcon Condition="Exists('$(MSBuildThisFileDirectory)assets/icon.png')">assets/icon.png</PackageIcon>
+    <PackageIcon Condition="Exists('$(MSBuildThisFileDirectory)assets/icon.png')">icon.png</PackageIcon>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>

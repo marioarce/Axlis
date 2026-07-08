@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
     <!-- Centralized version management for Axlis packages -->
-    <AxlisVersion>0.1.0-preview</AxlisVersion>
+    <AxlisVersion>0.1.0</AxlisVersion>
 
     <!-- Common package metadata -->
     <Authors>Mario Arce</Authors>

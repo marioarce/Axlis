@@ -1,4 +1,4 @@
-namespace Axlis;
+namespace Axlis.ORM;
 
 /// <summary>
 /// Represents the strongly-typed value of a Sitecore General Link (hyperlink) field.

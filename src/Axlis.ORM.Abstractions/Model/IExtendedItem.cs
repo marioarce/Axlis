@@ -1,4 +1,4 @@
-namespace Axlis;
+namespace Axlis.ORM;
 
 /// <summary>
 /// Extends <see cref="IBaseItem"/> with Synthesis-style tree traversal via <see cref="IAxes"/>

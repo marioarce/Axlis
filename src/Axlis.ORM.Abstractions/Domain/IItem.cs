@@ -1,4 +1,4 @@
-namespace Axlis;
+namespace Axlis.ORM;
 
 /// <summary>
 /// Represents the raw data model for a Sitecore item as returned from the GraphQL API.

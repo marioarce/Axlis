@@ -1,4 +1,4 @@
-namespace Axlis;
+namespace Axlis.ORM;
 
 /// <summary>
 /// Holds responsive source URLs for a <see cref="WebImage"/> across common breakpoints.

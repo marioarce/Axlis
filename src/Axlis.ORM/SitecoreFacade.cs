@@ -4,7 +4,7 @@ using Axlis.ORM.Services;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Axlis;
+namespace Axlis.ORM;
 
 /// <summary>
 /// Default <see cref="ISitecoreFacade"/> implementation.

@@ -1,4 +1,4 @@
-namespace Axlis;
+namespace Axlis.ORM;
 
 /// <summary>
 /// Provides Synthesis-style tree traversal operations for a Sitecore item.

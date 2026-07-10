@@ -26,13 +26,13 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: Restore
-      run: dotnet restore Axlis.sln
+      run: dotnet restore Axlis.ORM.sln
 
     - name: Build
-      run: dotnet build Axlis.sln --no-restore --configuration Release
+      run: dotnet build Axlis.ORM.sln --no-restore --configuration Release
 
     - name: Test
-      run: dotnet test Axlis.sln --no-build --configuration Release --verbosity normal
+      run: dotnet test Axlis.ORM.sln --no-build --configuration Release --verbosity normal
 
   pack:
     name: Pack NuGet Packages
@@ -49,13 +49,13 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: Restore
-      run: dotnet restore Axlis.sln
+      run: dotnet restore Axlis.ORM.sln
 
     - name: Build
-      run: dotnet build Axlis.sln --no-restore --configuration Release
+      run: dotnet build Axlis.ORM.sln --no-restore --configuration Release
 
     - name: Pack
-      run: dotnet pack Axlis.sln --no-build --configuration Release --output ./packages
+      run: dotnet pack Axlis.ORM.sln --no-build --configuration Release --output ./packages
 
     - name: Upload packages as artifacts
       uses: actions/upload-artifact@v4

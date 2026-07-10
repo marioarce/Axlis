@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Axlis\Axlis.csproj" />
+    <ProjectReference Include="..\..\src\Axlis.ORM\Axlis.csproj" />
   </ItemGroup>
 
 </Project>

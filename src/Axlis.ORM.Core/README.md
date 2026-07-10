@@ -1,5 +1,7 @@
 # Axlis.Core
 
+![Axlis Banner](https://raw.githubusercontent.com/marioarce/Axlis/refs/heads/main/assets/banner.png)
+
 Domain model and ORM core for the [Axlis](https://github.com/marioarce/Axlis) Sitecore Headless GraphQL ORM. Targets `net8.0`.
 
 ## Install

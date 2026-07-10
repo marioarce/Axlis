@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Axlis.ORM.GraphQL\Axlis.GraphQL.csproj" />
+    <ProjectReference Include="..\..\src\Axlis.ORM.GraphQL\Axlis.ORM.GraphQL.csproj" />
   </ItemGroup>
 
 </Project>

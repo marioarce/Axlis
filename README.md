@@ -99,6 +99,24 @@ Full docs live in [`/docs`](docs/):
 
 ---
 
+## Support
+
+- **GitHub Discussions** — Use for questions, ideas, and community discussions
+- **GitHub Issues** — Use for bug reports and feature requests
+
+**When to use Discussions:**
+- Questions about configuration, usage, or best practices
+- Ideas for new features or improvements
+- Sharing your implementation or asking for guidance
+- General conversations about Axlis
+
+**When to use Issues:**
+- Bug reports with reproducible steps
+- Specific feature requests with clear requirements
+- Security vulnerabilities (see SECURITY.md)
+
+---
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for branch strategy, commit format, and PR checklist.

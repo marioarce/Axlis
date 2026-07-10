@@ -4,12 +4,12 @@
     <TargetFramework>net8.0</TargetFramework>
 
     <!-- NuGet Package Metadata -->
-    <PackageId>Axlis.GraphQL</PackageId>
-    <PackageVersion>$(AxlisVersion)</PackageVersion>
-    <Title>Axlis — GraphQL</Title>
-    <Description>Sitecore Headless GraphQL transport for Axlis. Default IGraphQLTransport implementation using HttpClient and System.Text.Json — no third-party GraphQL library required.</Description>
+    <PackageId>Axlis.ORM.GraphQL</PackageId>
+    <PackageVersion>$(AxlisORMVersion)</PackageVersion>
+    <Title>Axlis.ORM — GraphQL</Title>
+    <Description>Sitecore Headless GraphQL transport for Axlis.ORM. Default IGraphQLTransport implementation using HttpClient and System.Text.Json — no third-party GraphQL library required.</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageTags>csharp;dotnet;sitecore;headless;graphql;orm;axlis;httpclient</PackageTags>
+    <PackageTags>csharp;dotnet;sitecore;headless;graphql;orm;axlis;ecosystem;httpclient</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Axlis.Core\Axlis.Core.csproj" />
+    <ProjectReference Include="..\Axlis.ORM.Core\Axlis.ORM.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

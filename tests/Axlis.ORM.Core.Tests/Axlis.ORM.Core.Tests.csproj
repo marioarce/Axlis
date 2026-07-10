@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="xunit" Version="2.5.3" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
@@ -19,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Axlis.ORM\Axlis.csproj" />
+    <ProjectReference Include="..\..\src\Axlis.ORM.Core\Axlis.ORM.Core.csproj" />
+    <ProjectReference Include="..\..\src\Axlis.ORM.Abstractions\Axlis.ORM.Abstractions.csproj" />
   </ItemGroup>
-
 </Project>

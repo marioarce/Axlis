@@ -1,5 +1,7 @@
 # Axlis.Abstractions
 
+![Axlis Banner](https://raw.githubusercontent.com/marioarce/Axlis/refs/heads/main/assets/banner.png)
+
 Contracts-only package for the [Axlis](https://github.com/marioarce/Axlis) Sitecore Headless GraphQL ORM.
 
 Targets `netstandard2.0` + `net8.0`. Zero third-party dependencies — safe to reference from any layer.

@@ -1,4 +1,4 @@
-namespace Axlis;
+namespace Axlis.ORM;
 
 /// <summary>
 /// Represents the resolved value of a Sitecore Droplink / Droptree field,

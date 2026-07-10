@@ -1,5 +1,7 @@
 # Axlis.GraphQL
 
+![Axlis Banner](https://raw.githubusercontent.com/marioarce/Axlis/refs/heads/main/assets/banner.png)
+
 Default Sitecore Headless GraphQL transport for the [Axlis](https://github.com/marioarce/Axlis) ORM. Targets `net8.0`.
 
 Uses raw `HttpClient` + `System.Text.Json` — no third-party GraphQL library required.

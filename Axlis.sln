@@ -5,21 +5,21 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8BC16A2C-CB9A-4A50-A429-EC5170863742}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axlis.Abstractions", "src\Axlis.Abstractions\Axlis.Abstractions.csproj", "{58B092E4-2919-4960-BA14-EE09410C1659}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axlis.ORM.Abstractions", "src\Axlis.ORM.Abstractions\Axlis.Abstractions.csproj", "{58B092E4-2919-4960-BA14-EE09410C1659}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axlis.Core", "src\Axlis.Core\Axlis.Core.csproj", "{F4B81E16-823D-4B00-B132-1403CE669C5A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axlis.ORM.Core", "src\Axlis.ORM.Core\Axlis.Core.csproj", "{F4B81E16-823D-4B00-B132-1403CE669C5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axlis.GraphQL", "src\Axlis.GraphQL\Axlis.GraphQL.csproj", "{702CE990-C625-4531-8CEC-482AD4B1C698}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axlis.ORM.GraphQL", "src\Axlis.ORM.GraphQL\Axlis.GraphQL.csproj", "{702CE990-C625-4531-8CEC-482AD4B1C698}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axlis", "src\Axlis\Axlis.csproj", "{6CC16972-ED97-428B-9BCB-74B9753B7D74}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axlis.ORM", "src\Axlis.ORM\Axlis.csproj", "{6CC16972-ED97-428B-9BCB-74B9753B7D74}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{6263F79D-D5A2-44A8-B433-902B35C759AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axlis.Core.Tests", "tests\Axlis.Core.Tests\Axlis.Core.Tests.csproj", "{92ED4C38-1A9C-48B7-8721-E9CAA5173270}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axlis.ORM.Core.Tests", "tests\Axlis.ORM.Core.Tests\Axlis.Core.Tests.csproj", "{92ED4C38-1A9C-48B7-8721-E9CAA5173270}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axlis.GraphQL.Tests", "tests\Axlis.GraphQL.Tests\Axlis.GraphQL.Tests.csproj", "{E08A0FEF-949F-41E8-A668-F2505B8B60FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axlis.ORM.GraphQL.Tests", "tests\Axlis.ORM.GraphQL.Tests\Axlis.GraphQL.Tests.csproj", "{E08A0FEF-949F-41E8-A668-F2505B8B60FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axlis.Tests", "tests\Axlis.Tests\Axlis.Tests.csproj", "{E54BE6AC-F4F8-429F-97AD-D781C53A3BAA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axlis.ORM.Tests", "tests\Axlis.ORM.Tests\Axlis.Tests.csproj", "{E54BE6AC-F4F8-429F-97AD-D781C53A3BAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

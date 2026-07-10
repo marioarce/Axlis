@@ -1,7 +1,7 @@
-using Axlis.Attributes;
-using Axlis.Core.FieldTypes;
+using Axlis.ORM.Attributes;
+using Axlis.ORM.Core.FieldTypes;
 
-namespace Axlis.Core.Templates.System;
+namespace Axlis.ORM.Core.Templates.System;
 
 /// <summary>
 /// Strongly-typed wrapper for the Sitecore <b>Dictionary Entry</b> template

@@ -1,4 +1,4 @@
-namespace Axlis.Results;
+namespace Axlis.ORM.Results;
 
 /// <summary>
 /// The rich result envelope returned by the <c>WithResult</c> API on <see cref="Axlis.Services.ISitecoreFacade"/>.

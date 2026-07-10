@@ -1,7 +1,7 @@
-using Axlis.Results;
+using Axlis.ORM.Results;
 using Microsoft.Extensions.Logging;
 
-namespace Axlis.Diagnostics;
+namespace Axlis.ORM.Diagnostics;
 
 /// <summary>
 /// Default <see cref="IAxlisDiagnosticsSink"/> that routes events to <see cref="ILogger"/>.

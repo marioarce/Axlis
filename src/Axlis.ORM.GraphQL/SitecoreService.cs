@@ -1,16 +1,16 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Axlis.Core;
-using Axlis.Core.GraphQL;
-using Axlis.GraphQL.Models;
-using Axlis.GraphQL.Queries;
-using Axlis.GraphQL.Transport;
-using Axlis.Services;
-using Axlis.Transport;
+using Axlis.ORM.Core;
+using Axlis.ORM.Core.GraphQL;
+using Axlis.ORM.GraphQL.Models;
+using Axlis.ORM.GraphQL.Queries;
+using Axlis.ORM.GraphQL.Transport;
+using Axlis.ORM.Services;
+using Axlis.ORM.Transport;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Axlis.GraphQL;
+namespace Axlis.ORM.GraphQL;
 
 /// <summary>
 /// Default <see cref="ISitecoreService"/> implementation that fetches Sitecore items via the

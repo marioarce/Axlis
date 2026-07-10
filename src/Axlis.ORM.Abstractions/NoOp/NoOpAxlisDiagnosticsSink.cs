@@ -1,6 +1,6 @@
-using Axlis.Results;
+using Axlis.ORM.Results;
 
-namespace Axlis.NoOp;
+namespace Axlis.ORM.NoOp;
 
 /// <summary>
 /// A diagnostics sink that silently discards all events.

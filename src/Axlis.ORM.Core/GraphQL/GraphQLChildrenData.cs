@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Axlis.Core.GraphQL;
+namespace Axlis.ORM.Core.GraphQL;
 
 /// <summary>
 /// Paginated children container returned by the Sitecore Headless GraphQL API.

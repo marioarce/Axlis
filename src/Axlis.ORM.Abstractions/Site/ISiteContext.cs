@@ -1,4 +1,4 @@
-namespace Axlis.Site;
+namespace Axlis.ORM.Site;
 
 /// <summary>
 /// Provides the current site key for multi-site Sitecore deployments.

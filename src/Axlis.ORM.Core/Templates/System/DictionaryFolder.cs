@@ -1,6 +1,6 @@
-using Axlis.Attributes;
+using Axlis.ORM.Attributes;
 
-namespace Axlis.Core.Templates.System;
+namespace Axlis.ORM.Core.Templates.System;
 
 /// <summary>
 /// Strongly-typed wrapper for the Sitecore <b>Dictionary Folder</b> template

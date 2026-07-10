@@ -1,4 +1,4 @@
-namespace Axlis.Core;
+namespace Axlis.ORM.Core;
 
 /// <summary>
 /// Equality comparer for <see cref="ExtendedItem"/> instances based on their Sitecore item ID (GUID, case-insensitive).

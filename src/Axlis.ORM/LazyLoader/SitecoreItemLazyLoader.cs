@@ -1,9 +1,9 @@
-using Axlis.Caching;
-using Axlis.Core;
-using Axlis.Services;
+using Axlis.ORM.Caching;
+using Axlis.ORM.Core;
+using Axlis.ORM.Services;
 using Microsoft.Extensions.Logging;
 
-namespace Axlis.LazyLoader;
+namespace Axlis.ORM.LazyLoader;
 
 /// <summary>
 /// Default <see cref="IItemLazyLoader"/> that fetches items on demand via <see cref="ISitecoreService"/>,

@@ -1,6 +1,6 @@
-using Axlis.GraphQL;
+using Axlis.ORM.GraphQL;
 
-namespace Axlis.GraphQL.Tests;
+namespace Axlis.ORM.GraphQL.Tests;
 
 public sealed class GraphQLQueryBuilderTests
 {

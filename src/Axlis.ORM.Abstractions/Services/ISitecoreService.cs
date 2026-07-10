@@ -1,4 +1,4 @@
-namespace Axlis.Services;
+namespace Axlis.ORM.Services;
 
 /// <summary>
 /// Low-level Sitecore data-access contract. Returns raw <see cref="IItem"/> domain objects.

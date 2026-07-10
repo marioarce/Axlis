@@ -1,4 +1,4 @@
-namespace Axlis.Results;
+namespace Axlis.ORM.Results;
 
 /// <summary>
 /// Receives <see cref="AxlisDiagnosticEvent"/> instances captured by Axlis during content operations.

@@ -1,6 +1,6 @@
-using Axlis.Core.GraphQL;
+using Axlis.ORM.Core.GraphQL;
 
-namespace Axlis.Core;
+namespace Axlis.ORM.Core;
 
 /// <summary>
 /// Converts <see cref="GraphQLItemData"/> trees into <see cref="Item"/> domain objects.

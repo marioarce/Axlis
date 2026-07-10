@@ -1,11 +1,11 @@
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Axlis.GraphQL.Models;
-using Axlis.Transport;
+using Axlis.ORM.GraphQL.Models;
+using Axlis.ORM.Transport;
 using Microsoft.Extensions.Logging;
 
-namespace Axlis.GraphQL.Transport;
+namespace Axlis.ORM.GraphQL.Transport;
 
 /// <summary>
 /// Default <see cref="IGraphQLTransport"/> implementation that uses a raw <see cref="HttpClient"/>

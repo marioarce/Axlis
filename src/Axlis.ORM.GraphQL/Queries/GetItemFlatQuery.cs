@@ -1,4 +1,4 @@
-namespace Axlis.GraphQL.Queries;
+namespace Axlis.ORM.GraphQL.Queries;
 
 /// <summary>
 /// Contains the GraphQL query for retrieving a Sitecore item without parent, ancestors, or children.

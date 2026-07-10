@@ -1,4 +1,4 @@
-namespace Axlis.Results;
+namespace Axlis.ORM.Results;
 
 /// <summary>
 /// Captures provenance metadata for a Sitecore item returned by the <c>WithResult</c> API.

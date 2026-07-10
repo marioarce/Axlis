@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Axlis.Core.GraphQL;
+namespace Axlis.ORM.Core.GraphQL;
 
 /// <summary>
 /// Represents a Sitecore item as returned by the Headless GraphQL API.

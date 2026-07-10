@@ -1,12 +1,12 @@
 using System.Net;
 using System.Text;
 using System.Text.Json;
-using Axlis.GraphQL.Models;
-using Axlis.GraphQL.Transport;
-using Axlis.Transport;
+using Axlis.ORM.GraphQL.Models;
+using Axlis.ORM.GraphQL.Transport;
+using Axlis.ORM.Transport;
 using Microsoft.Extensions.Options;
 
-namespace Axlis.GraphQL.Tests;
+namespace Axlis.ORM.GraphQL.Tests;
 
 public sealed class SitecoreServiceTests
 {

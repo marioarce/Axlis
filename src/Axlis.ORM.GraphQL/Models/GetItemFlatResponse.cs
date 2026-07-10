@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using Axlis.Core.GraphQL;
+using Axlis.ORM.Core.GraphQL;
 
-namespace Axlis.GraphQL.Models;
+namespace Axlis.ORM.GraphQL.Models;
 
 /// <summary>
 /// Internal deserialization root for the <c>GetItemFlat</c> GraphQL query.

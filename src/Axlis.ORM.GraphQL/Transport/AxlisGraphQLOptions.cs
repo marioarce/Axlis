@@ -1,4 +1,4 @@
-namespace Axlis.GraphQL.Transport;
+namespace Axlis.ORM.GraphQL.Transport;
 
 /// <summary>
 /// Configuration options for the Axlis GraphQL HTTP transport.

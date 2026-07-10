@@ -1,4 +1,4 @@
-namespace Axlis.Core;
+namespace Axlis.ORM.Core;
 
 /// <summary>
 /// The core Sitecore item domain model, returned by <c>ItemConverter</c>

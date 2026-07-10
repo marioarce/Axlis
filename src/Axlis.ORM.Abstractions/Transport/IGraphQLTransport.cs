@@ -1,4 +1,4 @@
-namespace Axlis.Transport;
+namespace Axlis.ORM.Transport;
 
 /// <summary>
 /// Abstraction for sending GraphQL requests to a Sitecore Headless endpoint.

@@ -1,12 +1,12 @@
-using Axlis.Caching;
-using Axlis.Core;
-using Axlis.Results;
-using Axlis.Services;
+using Axlis.ORM.Caching;
+using Axlis.ORM.Core;
+using Axlis.ORM.Results;
+using Axlis.ORM.Services;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 using PowerCSharp.Feature.Cache.Abstractions.NoOp;
 
-namespace Axlis.Tests;
+namespace Axlis.ORM.Tests;
 
 public sealed class SitecoreFacadeTests
 {

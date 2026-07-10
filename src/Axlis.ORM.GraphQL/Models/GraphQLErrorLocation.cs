@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Axlis.GraphQL.Models;
+namespace Axlis.ORM.GraphQL.Models;
 
 /// <summary>
 /// Identifies the line and column in a GraphQL query document where an error was detected.

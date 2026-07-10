@@ -1,4 +1,4 @@
-namespace Axlis.GraphQL.Queries;
+namespace Axlis.ORM.GraphQL.Queries;
 
 /// <summary>
 /// Contains the GraphQL query for retrieving a Sitecore item by path or ID with full tree depth.

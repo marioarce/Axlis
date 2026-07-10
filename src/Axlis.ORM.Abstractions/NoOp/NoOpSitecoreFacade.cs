@@ -1,7 +1,7 @@
-using Axlis.Results;
-using Axlis.Services;
+using Axlis.ORM.Results;
+using Axlis.ORM.Services;
 
-namespace Axlis.NoOp;
+namespace Axlis.ORM.NoOp;
 
 /// <summary>
 /// A safe-off <see cref="ISitecoreFacade"/> that returns <c>null</c> or empty results for all calls.

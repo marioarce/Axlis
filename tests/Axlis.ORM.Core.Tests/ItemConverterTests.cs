@@ -1,7 +1,7 @@
-using Axlis.Core;
-using Axlis.Core.GraphQL;
+using Axlis.ORM.Core;
+using Axlis.ORM.Core.GraphQL;
 
-namespace Axlis.Core.Tests;
+namespace Axlis.ORM.Core.Tests;
 
 public class ItemConverterTests
 {

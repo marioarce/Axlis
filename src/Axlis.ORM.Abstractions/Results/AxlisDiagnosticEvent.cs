@@ -1,4 +1,4 @@
-namespace Axlis.Results;
+namespace Axlis.ORM.Results;
 
 /// <summary>
 /// Represents a single diagnostic event captured during an Axlis operation.

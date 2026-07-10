@@ -1,4 +1,4 @@
-namespace Axlis.Attributes;
+namespace Axlis.ORM.Attributes;
 
 /// <summary>
 /// Maps a property on an <c>ExtendedItem</c> subclass to its Sitecore field name.

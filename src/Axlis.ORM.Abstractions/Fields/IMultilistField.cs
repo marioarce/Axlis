@@ -1,4 +1,4 @@
-namespace Axlis.Fields;
+namespace Axlis.ORM.Fields;
 
 /// <summary>
 /// Represents a Sitecore Multilist or Treelist field that references multiple items.

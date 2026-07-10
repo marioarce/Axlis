@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Axlis.GraphQL.Models;
+namespace Axlis.ORM.GraphQL.Models;
 
 /// <summary>
 /// Internal DTO serialized as the JSON body of an HTTP GraphQL request.

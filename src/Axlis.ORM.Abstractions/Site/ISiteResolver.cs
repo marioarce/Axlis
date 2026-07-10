@@ -1,4 +1,4 @@
-namespace Axlis.Site;
+namespace Axlis.ORM.Site;
 
 /// <summary>
 /// Resolves the active site key from the current execution context (e.g. HTTP request, ambient state).

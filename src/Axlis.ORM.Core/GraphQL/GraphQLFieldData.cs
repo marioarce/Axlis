@@ -1,7 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Axlis.Core.GraphQL;
+namespace Axlis.ORM.Core.GraphQL;
 
 /// <summary>
 /// Represents a single Sitecore field from a GraphQL response.

@@ -1,7 +1,7 @@
 using System.Text;
-using Axlis.Core.FieldTypes;
+using Axlis.ORM.Core.FieldTypes;
 
-namespace Axlis.Core;
+namespace Axlis.ORM.Core;
 
 /// <summary>
 /// Base class for all strongly-typed Sitecore template POCOs.

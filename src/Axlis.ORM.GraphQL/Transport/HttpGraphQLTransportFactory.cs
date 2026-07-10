@@ -1,8 +1,8 @@
-using Axlis.Transport;
+using Axlis.ORM.Transport;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Axlis.GraphQL.Transport;
+namespace Axlis.ORM.GraphQL.Transport;
 
 /// <summary>
 /// Default <see cref="IGraphQLTransportFactory"/> that creates <see cref="HttpGraphQLTransport"/>

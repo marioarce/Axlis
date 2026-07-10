@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Axlis.GraphQL.Models;
+namespace Axlis.ORM.GraphQL.Models;
 
 /// <summary>
 /// Represents a single error object returned by a Sitecore GraphQL endpoint.

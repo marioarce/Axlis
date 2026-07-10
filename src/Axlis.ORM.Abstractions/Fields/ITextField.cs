@@ -1,4 +1,4 @@
-namespace Axlis.Fields;
+namespace Axlis.ORM.Fields;
 
 /// <summary>
 /// Represents a Sitecore Single-Line Text or Multi-Line Text field.

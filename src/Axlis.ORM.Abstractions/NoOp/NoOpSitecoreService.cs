@@ -1,6 +1,6 @@
-using Axlis.Services;
+using Axlis.ORM.Services;
 
-namespace Axlis.NoOp;
+namespace Axlis.ORM.NoOp;
 
 /// <summary>
 /// A safe-off <see cref="ISitecoreService"/> that returns <c>null</c> or empty results for all calls.

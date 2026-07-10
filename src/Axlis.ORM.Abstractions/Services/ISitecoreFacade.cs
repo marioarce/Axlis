@@ -1,6 +1,6 @@
-using Axlis.Results;
+using Axlis.ORM.Results;
 
-namespace Axlis.Services;
+namespace Axlis.ORM.Services;
 
 /// <summary>
 /// High-level, strongly-typed facade for Sitecore Headless content access.

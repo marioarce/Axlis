@@ -1,6 +1,6 @@
-using Axlis.Core;
+using Axlis.ORM.Core;
 
-namespace Axlis.Core.Tests.Model;
+namespace Axlis.ORM.Core.Tests.Model;
 
 public class ExtendedItemTests
 {

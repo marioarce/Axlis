@@ -1,4 +1,4 @@
-namespace Axlis.Transport;
+namespace Axlis.ORM.Transport;
 
 /// <summary>
 /// Represents a GraphQL operation to be sent by an <see cref="IGraphQLTransport"/>.

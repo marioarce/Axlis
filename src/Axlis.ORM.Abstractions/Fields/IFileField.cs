@@ -1,4 +1,4 @@
-namespace Axlis.Fields;
+namespace Axlis.ORM.Fields;
 
 /// <summary>
 /// Represents a Sitecore File field (media library attachment).

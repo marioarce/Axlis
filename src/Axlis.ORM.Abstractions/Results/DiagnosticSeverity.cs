@@ -1,4 +1,4 @@
-namespace Axlis.Results;
+namespace Axlis.ORM.Results;
 
 /// <summary>
 /// Severity levels for <see cref="AxlisDiagnosticEvent"/> entries.

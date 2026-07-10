@@ -1,6 +1,6 @@
-using Axlis.Fields;
+using Axlis.ORM.Fields;
 
-namespace Axlis.Core.FieldTypes;
+namespace Axlis.ORM.Core.FieldTypes;
 
 /// <summary>
 /// Wraps a Sitecore Single-Line Text or Multi-Line Text field.

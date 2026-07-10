@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace Axlis.Core;
+namespace Axlis.ORM.Core;
 
 /// <summary>
 /// Concrete implementation of <see cref="IItemTemplateField"/> carrying all field data

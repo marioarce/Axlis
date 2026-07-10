@@ -1,4 +1,4 @@
-namespace Axlis.Core;
+namespace Axlis.ORM.Core;
 
 /// <summary>
 /// Holds the children collection for an <see cref="Item"/>, including its loaded state

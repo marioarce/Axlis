@@ -1,6 +1,6 @@
-using Axlis.Core;
+using Axlis.ORM.Core;
 
-namespace Axlis.Core.Tests.Domain;
+namespace Axlis.ORM.Core.Tests.Domain;
 
 public class ItemTemplateTests
 {

@@ -1,4 +1,4 @@
-namespace Axlis.Fields;
+namespace Axlis.ORM.Fields;
 
 /// <summary>
 /// Represents a Sitecore Image field with responsive source URLs.

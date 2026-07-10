@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Axlis.Core.GraphQL;
+namespace Axlis.ORM.Core.GraphQL;
 
 /// <summary>
 /// Template metadata returned inside a <see cref="GraphQLItemData"/> from the Sitecore Headless GraphQL API.

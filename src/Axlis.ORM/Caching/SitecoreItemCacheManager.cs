@@ -2,7 +2,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using PowerCSharp.Feature.Cache.Abstractions;
 
-namespace Axlis.Caching;
+namespace Axlis.ORM.Caching;
 
 /// <summary>
 /// Stampede-safe in-memory cache for Sitecore items.

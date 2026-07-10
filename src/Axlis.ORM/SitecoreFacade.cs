@@ -1,6 +1,6 @@
-using Axlis.Caching;
-using Axlis.Results;
-using Axlis.Services;
+using Axlis.ORM.Caching;
+using Axlis.ORM.Results;
+using Axlis.ORM.Services;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 

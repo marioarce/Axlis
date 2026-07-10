@@ -1,7 +1,7 @@
-using Axlis.Core;
-using Axlis.Core.FieldTypes;
+using Axlis.ORM.Core;
+using Axlis.ORM.Core.FieldTypes;
 
-namespace Axlis.Core.Tests.FieldTypes;
+namespace Axlis.ORM.Core.Tests.FieldTypes;
 
 public class TextFieldTests
 {

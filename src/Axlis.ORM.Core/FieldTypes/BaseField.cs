@@ -1,6 +1,6 @@
-using Axlis.Fields;
+using Axlis.ORM.Fields;
 
-namespace Axlis.Core.FieldTypes;
+namespace Axlis.ORM.Core.FieldTypes;
 
 /// <summary>
 /// Abstract base for all Axlis field-type wrappers.

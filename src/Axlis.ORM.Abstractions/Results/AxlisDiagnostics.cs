@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 
-namespace Axlis.Results;
+namespace Axlis.ORM.Results;
 
 /// <summary>
 /// Collects <see cref="AxlisDiagnosticEvent"/> entries produced during an Axlis operation.

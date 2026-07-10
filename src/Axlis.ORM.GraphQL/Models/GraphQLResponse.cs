@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Axlis.GraphQL.Models;
+namespace Axlis.ORM.GraphQL.Models;
 
 /// <summary>
 /// Internal envelope for a GraphQL HTTP response. The <c>data</c> field is deserialized into

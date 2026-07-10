@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace Axlis.Core;
+namespace Axlis.ORM.Core;
 
 /// <summary>
 /// Concrete implementation of <see cref="IItemTemplate"/>.

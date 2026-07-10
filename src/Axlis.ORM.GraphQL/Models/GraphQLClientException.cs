@@ -1,4 +1,4 @@
-namespace Axlis.GraphQL.Models;
+namespace Axlis.ORM.GraphQL.Models;
 
 /// <summary>
 /// Exception thrown when a GraphQL operation fails due to an HTTP error, a deserialization

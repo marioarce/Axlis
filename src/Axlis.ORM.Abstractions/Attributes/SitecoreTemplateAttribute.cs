@@ -1,4 +1,4 @@
-namespace Axlis.Attributes;
+namespace Axlis.ORM.Attributes;
 
 /// <summary>
 /// Marks a class as a strongly-typed Sitecore template and records its template GUID.

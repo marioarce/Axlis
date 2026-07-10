@@ -1,6 +1,6 @@
-using Axlis.Attributes;
+using Axlis.ORM.Attributes;
 
-namespace Axlis.Core.Templates.Common;
+namespace Axlis.ORM.Core.Templates.Common;
 
 /// <summary>
 /// Strongly-typed wrapper for the Sitecore <b>Folder</b> template

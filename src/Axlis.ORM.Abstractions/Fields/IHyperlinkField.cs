@@ -1,4 +1,4 @@
-namespace Axlis.Fields;
+namespace Axlis.ORM.Fields;
 
 /// <summary>
 /// Represents a Sitecore General Link field.

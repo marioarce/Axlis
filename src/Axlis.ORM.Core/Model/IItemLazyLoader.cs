@@ -1,4 +1,4 @@
-namespace Axlis.Core;
+namespace Axlis.ORM.Core;
 
 /// <summary>
 /// Abstraction for on-demand item fetching, used by <see cref="ExtendedItem"/>

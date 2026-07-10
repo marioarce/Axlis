@@ -1,4 +1,4 @@
-namespace Axlis.Core;
+namespace Axlis.ORM.Core;
 
 /// <summary>
 /// Synthesis-style <see cref="IAxes"/> implementation that wraps an <see cref="Item"/>

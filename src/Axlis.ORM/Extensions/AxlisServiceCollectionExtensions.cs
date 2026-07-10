@@ -1,31 +1,31 @@
-using Axlis.Caching;
-using Axlis.Core;
-using Axlis.Diagnostics;
-using Axlis.GraphQL;
-using Axlis.GraphQL.Transport;
-using Axlis.LazyLoader;
-using Axlis.Results;
-using Axlis.Services;
-using Axlis.Transport;
+using Axlis.ORM.Caching;
+using Axlis.ORM.Core;
+using Axlis.ORM.Diagnostics;
+using Axlis.ORM.GraphQL;
+using Axlis.ORM.GraphQL.Transport;
+using Axlis.ORM.LazyLoader;
+using Axlis.ORM.Results;
+using Axlis.ORM.Services;
+using Axlis.ORM.Transport;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using PowerCSharp.Feature.Cache.Abstractions;
 using PowerCSharp.Feature.Cache.Abstractions.NoOp;
 
-namespace Axlis.Extensions;
+namespace Axlis.ORM.Extensions;
 
 /// <summary>
-/// Extension methods for registering Axlis services with <see cref="IServiceCollection"/>.
+/// Extension methods for registering Axlis.ORM services with <see cref="IServiceCollection"/>.
 /// </summary>
-public static class AxlisServiceCollectionExtensions
+public static class AxlisORMServiceCollectionExtensions
 {
     /// <summary>
-    /// Registers core Axlis services: <see cref="SitecoreItemCacheManager"/>,
+    /// Registers core Axlis.ORM services: <see cref="SitecoreItemCacheManager"/>,
     /// <see cref="IItemLazyLoader"/>, <see cref="ISitecoreFacade"/>, and the default
     /// <see cref="IAxlisDiagnosticsSink"/>.
     /// <para>
     /// Requires <see cref="ICacheService"/> to already be registered (or uses the built-in
-    /// <see cref="NoOpCacheService"/> if none is found). Call <see cref="AddAxlisGraphQL"/>
+    /// <see cref="NoOpCacheService"/> if none is found). Call <see cref="AddAxlisORMGraphQL"/>
     /// to also register the data access layer.
     /// </para>
     /// <para>
@@ -36,7 +36,7 @@ public static class AxlisServiceCollectionExtensions
     /// </summary>
     /// <param name="services">The service collection.</param>
     /// <param name="configure">Optional delegate to configure <see cref="AxlisOptions"/>.</param>
-    public static IServiceCollection AddAxlis(
+    public static IServiceCollection AddAxlisORM(
         this IServiceCollection services,
         Action<AxlisOptions>? configure = null)
     {
@@ -45,7 +45,7 @@ public static class AxlisServiceCollectionExtensions
 
         // Register a NoOpCacheService as the default. Consumers who want stampede-safe
         // in-memory caching should register a real ICacheService (e.g. via
-        // AddBitFasterCache() from PowerCSharp.Feature.Cache.BitFaster) BEFORE calling AddAxlis().
+        // AddBitFasterCache() from PowerCSharp.Feature.Cache.BitFaster) BEFORE calling AddAxlisORM().
         // ASP.NET Core DI resolves the first matching registration, so a provider registered
         // earlier in the pipeline takes precedence over this fallback.
         services.AddSingleton<ICacheService, NoOpCacheService>();
@@ -59,17 +59,17 @@ public static class AxlisServiceCollectionExtensions
     }
 
     /// <summary>
-    /// Registers the Axlis GraphQL data-access layer: <see cref="IGraphQLTransportFactory"/>,
+    /// Registers the Axlis.ORM GraphQL data-access layer: <see cref="IGraphQLTransportFactory"/>,
     /// <see cref="ISitecoreService"/>, and the named <see cref="System.Net.Http.HttpClient"/>
     /// used by the default transport.
     /// <para>
-    /// Call this <b>after</b> <see cref="AddAxlis"/> (or independently when only the
+    /// Call this <b>after</b> <see cref="AddAxlisORM"/> (or independently when only the
     /// service layer is needed without the facade).
     /// </para>
     /// </summary>
     /// <param name="services">The service collection.</param>
     /// <param name="configure">Optional delegate to configure <see cref="AxlisGraphQLOptions"/>.</param>
-    public static IServiceCollection AddAxlisGraphQL(
+    public static IServiceCollection AddAxlisORMGraphQL(
         this IServiceCollection services,
         Action<AxlisGraphQLOptions>? configure = null)
     {

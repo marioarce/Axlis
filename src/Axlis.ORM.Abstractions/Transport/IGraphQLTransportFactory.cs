@@ -1,4 +1,4 @@
-namespace Axlis.Transport;
+namespace Axlis.ORM.Transport;
 
 /// <summary>
 /// Creates <see cref="IGraphQLTransport"/> instances, optionally scoped to a specific site.

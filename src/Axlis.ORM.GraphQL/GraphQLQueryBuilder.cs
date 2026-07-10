@@ -1,7 +1,7 @@
 using System.Text;
-using Axlis.GraphQL.Queries;
+using Axlis.ORM.GraphQL.Queries;
 
-namespace Axlis.GraphQL;
+namespace Axlis.ORM.GraphQL;
 
 /// <summary>
 /// Builds batch GraphQL queries that fetch multiple Sitecore items in a single HTTP request.

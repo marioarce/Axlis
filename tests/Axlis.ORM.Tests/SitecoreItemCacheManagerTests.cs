@@ -1,10 +1,10 @@
-using Axlis.Caching;
-using Axlis.Core;
+using Axlis.ORM.Caching;
+using Axlis.ORM.Core;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 using PowerCSharp.Feature.Cache.Abstractions.NoOp;
 
-namespace Axlis.Tests;
+namespace Axlis.ORM.Tests;
 
 public sealed class SitecoreItemCacheManagerTests
 {

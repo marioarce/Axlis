@@ -3,6 +3,7 @@
 ![Axlis Banner](https://raw.githubusercontent.com/marioarce/Axlis/refs/heads/main/assets/banner.png)
 
 [![CI](https://github.com/marioarce/Axlis/actions/workflows/ci.yml/badge.svg)](https://github.com/marioarce/Axlis/actions/workflows/ci.yml)
+[![NuGet](https://img.shields.io/nuget/v/Axlis.ORM?label=Axlis.ORM)](https://www.nuget.org/packages/Axlis.ORM)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 **Axlis** is a Sitecore ecosystem for .NET 8 — a collection of enterprise-grade libraries and tools for Sitecore development.

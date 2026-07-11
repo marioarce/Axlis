@@ -1,7 +1,8 @@
 <Project>
   <PropertyGroup>
-    <!-- Centralized version management for Axlis packages -->
+    <!-- Centralized version management for Axlis ecosystem packages -->
     <AxlisVersion>0.1.0</AxlisVersion>
+    <AxlisORMVersion>0.1.0</AxlisORMVersion>
 
     <!-- Common package metadata -->
     <Authors>Mario Arce</Authors>

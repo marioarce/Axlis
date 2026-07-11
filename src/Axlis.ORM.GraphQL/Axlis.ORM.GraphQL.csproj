@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+
+    <!-- NuGet Package Metadata -->
+    <PackageId>Axlis.ORM.GraphQL</PackageId>
+    <PackageVersion>$(AxlisORMVersion)</PackageVersion>
+    <Title>Axlis.ORM — GraphQL</Title>
+    <Description>Sitecore Headless GraphQL transport for Axlis.ORM. Default IGraphQLTransport implementation using HttpClient and System.Text.Json — no third-party GraphQL library required.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>csharp;dotnet;sitecore;headless;graphql;orm;axlis;ecosystem;httpclient</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Axlis.ORM.Core\Axlis.ORM.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>

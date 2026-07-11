@@ -1,0 +1,57 @@
+﻿<Properties StartupConfiguration="{92ED4C38-1A9C-48B7-8721-E9CAA5173270}|Default">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Axlis.ORM" expanded="True">
+            <Node name="src" expanded="True" />
+            <Node name="tests" expanded="True">
+              <Node name="Axlis.ORM.Core.Tests" expanded="True">
+                <Node name="Dependencies" expanded="True">
+                  <Node name="ProjectDependencies" expanded="True" />
+                </Node>
+                <Node name="FieldTypes" expanded="True" />
+              </Node>
+              <Node name="Axlis.ORM.GraphQL.Tests" expanded="True">
+                <Node name="Dependencies" expanded="True">
+                  <Node name="ProjectDependencies" expanded="True" />
+                </Node>
+              </Node>
+              <Node name="Axlis.ORM.Tests" expanded="True">
+                <Node name="Dependencies" expanded="True">
+                  <Node name="ProjectDependencies" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="Axlis.ORM" selected="True">
+            <Node name="tests">
+              <Node name="Axlis.ORM.GraphQL.Tests" expanded="True">
+                <Node name="Axlis.ORM.GraphQL.Tests" expanded="True" />
+              </Node>
+              <Node name="Axlis.ORM.Tests" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>response</Value>
+          <Value>extendedResultInstance</Value>
+          <Value>(TResponse)extendedResultInstance</Value>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.tests.Axlis.ORM.Core.Tests PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+</Properties>

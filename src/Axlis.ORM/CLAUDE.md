@@ -22,7 +22,7 @@ Scoped guidance for this project. Inherits everything in the repo-root [`CLAUDE.
 
 ## Naming Note (Known Doc Drift)
 
-The DI extension methods are `AddAxlisORM()` / `AddAxlisORMGraphQL()` / `UseAxlis()` in current code (post ecosystem-rename). Some docs (`docs/orm/Caching.md`) still reference the pre-rename `AddAxlis()` / `AddAxlisGraphQL()`. When writing new docs or examples, use the current names; when you notice stale references in existing docs, fix them as part of the change rather than propagating them.
+The DI extension methods are `AddAxlisORM()` / `AddAxlisORMGraphQL()` / `UseAxlis()` in current code (post ecosystem-rename). All docs and XML doc comments were swept and corrected as of the 2026-07-22 documentation audit — `docs/orm/Caching.md` and several source XML doc comments previously referenced the pre-rename `AddAxlis()` / `AddAxlisGraphQL()`. When writing new docs or examples, use the current names; when you notice stale references creep back in, fix them as part of the change rather than propagating them.
 
 ## See Also
 

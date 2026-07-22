@@ -20,7 +20,7 @@ This is a high-caution SOP — every consumer's `Program.cs` depends on the curr
 3. If adding a new required service, provide it a sensible default registration so `AddAxlisORM()` remains a one-call "it just works" experience — don't force new mandatory configuration on existing consumers.
 4. `UseAxlis()` must remain idempotent-safe to call once and must continue to be the single wiring point for `ExtendedItem`'s static loader — do not introduce a second code path that also calls `ExtendedItem.Initialize`.
 5. Add/update a test in `tests/Axlis.ORM.Tests/` (or a new DI-focused test file) that builds a minimal `ServiceCollection`, calls `AddAxlisORM()` + `AddAxlisORMGraphQL()`, builds the provider, and resolves `ISitecoreFacade` successfully — this is the cheapest regression guard against a broken registration graph.
-6. Update `docs/orm/GettingStarted.md` and `docs/orm/Caching.md` if the public registration API surface changes at all — and fix any stale `AddAxlis()`/`AddAxlisGraphQL()` references you encounter while you're in there (see this project's `CLAUDE.md` "Naming Note").
+6. Update `docs/orm/GettingStarted.md` and `docs/orm/Caching.md` if the public registration API surface changes at all — this repo has previously shipped with stale `AddAxlis()`/`AddAxlisGraphQL()` references in those exact docs after a rename, so treat any registration-API change as a doc-sync trigger, not an afterthought (see this project's `CLAUDE.md` "Naming Note").
 
 ## SOP F3 — Touching `SitecoreItemCacheManager` or `SitecoreItemLazyLoader`
 

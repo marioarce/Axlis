@@ -3,7 +3,7 @@ namespace Axlis.ORM.Services;
 /// <summary>
 /// Low-level Sitecore data-access contract. Returns raw <see cref="IItem"/> domain objects.
 /// Consumers should typically use <see cref="ISitecoreFacade"/> for strongly-typed access.
-/// Implemented by <c>SitecoreService</c> in <c>Axlis.GraphQL</c>.
+/// Implemented by <c>SitecoreService</c> in <c>Axlis.ORM.GraphQL</c>.
 /// </summary>
 public interface ISitecoreService
 {

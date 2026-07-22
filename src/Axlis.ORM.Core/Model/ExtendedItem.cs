@@ -19,7 +19,9 @@ public class ExtendedItem : BaseItem, IExtendedItem
     private static IItemLazyLoader? _lazyLoader;
 
     /// <summary>Initializes the ambient lazy-loader used by <see cref="ExtendedItem.RawInnerItem"/> and <see cref="AxesAdapter"/>.</summary>
-    /// <remarks>Call this once at application startup, typically inside <c>AddAxlis()</c>.</remarks>
+    /// <remarks>Call this once at application startup — the <c>Axlis.ORM</c> package's
+    /// <c>UseAxlis(IServiceProvider)</c> extension method calls this for you; you should not
+    /// need to call it directly unless you are wiring a custom host without that extension.</remarks>
     public static void Initialize(IItemLazyLoader loader) => _lazyLoader = loader;
 
     /// <summary>Clears the ambient lazy-loader (for testing).</summary>

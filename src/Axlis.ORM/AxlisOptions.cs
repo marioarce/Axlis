@@ -1,8 +1,8 @@
 namespace Axlis.ORM;
 
 /// <summary>
-/// Top-level configuration options for the <c>Axlis</c> package.
-/// Bind to the <c>"Axlis"</c> configuration section via <c>AddAxlis()</c>.
+/// Top-level configuration options for the <c>Axlis.ORM</c> package.
+/// Bind to the <c>"Axlis"</c> configuration section via <c>AddAxlisORM()</c>.
 /// </summary>
 public sealed class AxlisOptions
 {

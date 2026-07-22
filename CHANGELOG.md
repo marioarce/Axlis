@@ -11,7 +11,27 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
-## [0.1.0-preview] — TBD
+## [0.2.0] — 2026-07-10
+
+### Changed
+
+- **BREAKING:** Renamed the entire package family for ecosystem clarity ahead of additional Axlis components (`Axlis.Context`, `Axlis.Diagnostics`, `Axlis.Caching`):
+  - `Axlis` → `Axlis.ORM`
+  - `Axlis.Core` → `Axlis.ORM.Core`
+  - `Axlis.GraphQL` → `Axlis.ORM.GraphQL`
+  - `Axlis.Abstractions` → `Axlis.ORM.Abstractions`
+- Namespaces updated throughout to match the new package names (e.g. `namespace Axlis.Core;` → `namespace Axlis.ORM.Core;`).
+- DI extension methods renamed: `AddAxlis()` → `AddAxlisORM()`, `AddAxlisGraphQL()` → `AddAxlisORMGraphQL()`. `UseAxlis()` is unchanged.
+- Solution restructuring: `Axlis.ORM.sln` is now the live, buildable solution (4 src + 3 test projects); `Axlis.sln` repurposed as empty scaffolding reserved for future ecosystem components.
+- `docs/` reorganized: ORM-specific guides moved under `docs/orm/` (`Architecture.md`, `GettingStarted.md`, `Templates.md`, `Axes.md`, `Caching.md`); added `docs/WORKFLOW.md` (GitFlow SOP).
+- CI/CD workflows updated to build/test/pack `Axlis.ORM.sln`.
+- Per-package `README.md`s rewritten for the new package identities.
+
+> **Note on versioning:** this tag was not accompanied by a `PackageVersion` bump — `Directory.Build.props` still reports `0.1.0` for every package, so the artifacts published under this milestone are `Axlis.ORM.*` version `0.1.0` (new package IDs at their first version), not a distinct `0.2.0` release. The `v0.2.0` git tag marks the rename in history; it does not correspond to a `0.2.0` NuGet version. A real version bump is still owed before the next tag.
+
+---
+
+## [0.1.0] — 2026-07-08
 
 ### Added
 
@@ -58,5 +78,6 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
-[Unreleased]: https://github.com/marioarce/Axlis/compare/v0.1.0-preview...HEAD
-[0.1.0-preview]: https://github.com/marioarce/Axlis/releases/tag/v0.1.0-preview
+[Unreleased]: https://github.com/marioarce/Axlis/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/marioarce/Axlis/compare/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/marioarce/Axlis/releases/tag/v0.1.0

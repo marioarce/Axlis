@@ -48,9 +48,9 @@ var allArticles = home?.Axes.GetDescendants(i =>
 
 ## How lazy-loading works
 
-`GetItemByPathAsync` fetches a full item graph: 2 levels of ancestry (parent + grandparent) and the first 50 direct children. When `Axes.Parent` or `Axes.Children` are accessed, the data is already present in the item — no extra round-trip.
+`GetItemByPathAsync` fetches a full item graph in one request: 2 levels of ancestry (parent + grandparent) and 2 levels of descendants (up to the first 50 children, and up to the first 50 grandchildren *per* child). When `Axes.Parent` or `Axes.Children` are accessed within that fetched depth, the data is already present in the item — no extra round-trip.
 
-If an `Axes` member requests data that was **not** fetched (e.g. `Parent.Parent.Parent`, or more than 50 children), `SitecoreItemLazyLoader` transparently fetches the missing item via `ISitecoreService`, routing through `SitecoreItemCacheManager` to avoid redundant network calls.
+If an `Axes` member requests data that was **not** fetched (e.g. `Parent.Parent.Parent`, more than 50 children/grandchildren at a level, or a third level of descendants), `SitecoreItemLazyLoader` transparently fetches the missing item via `ISitecoreService`, routing through `SitecoreItemCacheManager` to avoid redundant network calls.
 
 ```
 item.Axes.Parent          → data already in item (no fetch)

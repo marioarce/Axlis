@@ -34,14 +34,24 @@ Or à la carte — reference only what you need.
 
 ```csharp
 // Program.cs
-builder.Services.AddAxlisORM(builder.Configuration);
+// AddAxlisORM/AddAxlisORMGraphQL take an Action<TOptions> delegate — bind from
+// IConfiguration explicitly, or set values inline.
+builder.Services
+    .AddAxlisORM(o => builder.Configuration.GetSection("Axlis").Bind(o))
+    .AddAxlisORMGraphQL(o => builder.Configuration.GetSection("AxlisGraphQL").Bind(o));
+
+var app = builder.Build();
+app.Services.UseAxlis(); // wires the ambient lazy-loader for Axes traversal
 
 // appsettings.json
 {
   "Axlis": {
-    "GraphQL": {
-      "BaseAddress": "https://your-sitecore-instance/sitecore/api/graph/edge"
-    }
+    "CacheTtl": "01:00:00",
+    "EnableDiagnostics": true
+  },
+  "AxlisGraphQL": {
+    "Endpoint": "https://your-sitecore-instance/sitecore/api/graph/edge",
+    "ApiKey": "your-sc_apikey-here"
   }
 }
 ```
@@ -67,7 +77,7 @@ var children  = item?.Axes.Children;
 var parent    = item?.Axes.Parent;
 var siblings  = item?.Axes.Siblings;
 
-var pages = item?.Axes.GetChildren(i => i.InnerItem?.Template?.Equals(MyPage.TemplateId) ?? false);
+var pages = item?.Axes.GetChildren<MyPage>(i => i.InnerItem?.Template?.Id == MyPage.TemplateId);
 
 // Rich result with metadata and diagnostics
 var result = await facade.GetItemByPathWithResultAsync<DictionaryEntry>("/sitecore/content/dictionary/my-key");

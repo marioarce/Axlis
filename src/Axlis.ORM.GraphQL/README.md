@@ -1,15 +1,15 @@
-# Axlis.GraphQL
+# Axlis.ORM.GraphQL
 
 ![Axlis Banner](https://raw.githubusercontent.com/marioarce/Axlis/refs/heads/main/assets/banner.png)
 
-Default Sitecore Headless GraphQL transport for the [Axlis](https://github.com/marioarce/Axlis) ORM. Targets `net8.0`.
+Default Sitecore Headless GraphQL transport for [Axlis.ORM](https://github.com/marioarce/Axlis). Targets `net8.0`.
 
 Uses raw `HttpClient` + `System.Text.Json` — no third-party GraphQL library required.
 
 ## Install
 
 ```
-dotnet add package Axlis.GraphQL
+dotnet add package Axlis.ORM.GraphQL
 ```
 
 ## What's included
@@ -33,12 +33,12 @@ dotnet add package Axlis.GraphQL
 }
 ```
 
-## Register via `AddAxlisGraphQL`
+## Register via `AddAxlisORMGraphQL`
 
 ```csharp
 builder.Services
-    .AddAxlis()
-    .AddAxlisGraphQL(o =>
+    .AddAxlisORM()
+    .AddAxlisORMGraphQL(o =>
     {
         o.Endpoint = builder.Configuration["AxlisGraphQL:Endpoint"]!;
         o.ApiKey   = builder.Configuration["AxlisGraphQL:ApiKey"]!;

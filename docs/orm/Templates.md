@@ -7,9 +7,9 @@ Axlis uses hand-written POCO classes — one per Sitecore template — that deri
 ## Defining a template
 
 ```csharp
-using Axlis.Attributes;
-using Axlis.Core;
-using Axlis.Core.FieldTypes;
+using Axlis.ORM.Attributes;
+using Axlis.ORM.Core;
+using Axlis.ORM.Core.FieldTypes;
 
 [SitecoreTemplate("{6D1CD897-1936-4A3A-A511-289A94C2A7B1}")]
 public class ArticlePage : ExtendedItem
@@ -91,7 +91,7 @@ public class ArticlePage : BasePage
 
 ## Built-in templates
 
-Axlis ships with commonly used Sitecore system templates in `Axlis.Core`:
+Axlis ships with commonly used Sitecore system templates in `Axlis.ORM.Core`:
 
 | Class | Sitecore template |
 |---|---|
@@ -133,4 +133,4 @@ The `[SitecoreTemplate]` and `[SitecoreField]` attributes are designed so a futu
 - Enumerate fields via `[SitecoreField]` without parsing source code.
 - Generate typed accessor classes or client-side stubs.
 
-No generator exists in v0.1 — all templates are hand-written. The attribute contract is stable and will not change.
+No generator exists today — all templates are hand-written. The attribute contract is stable and will not change.

@@ -3,14 +3,14 @@
 ## 1. Install
 
 ```bash
-dotnet add package Axlis
-dotnet add package Axlis.GraphQL
+dotnet add package Axlis.ORM
+dotnet add package Axlis.ORM.GraphQL
 ```
 
 For contracts-only scenarios (e.g. a shared domain project):
 
 ```bash
-dotnet add package Axlis.Abstractions
+dotnet add package Axlis.ORM.Abstractions
 ```
 
 ---
@@ -47,16 +47,11 @@ builder.Services
     // If omitted, a NoOpCacheService is used (no caching, always fetches).
     // .AddBitFasterCache()
 
-    .AddAxlis(o =>
-    {
-        o.CacheTtl         = TimeSpan.FromMinutes(30);
-        o.EnableDiagnostics = true;
-    })
-    .AddAxlisGraphQL(o =>
-    {
-        o.Endpoint = builder.Configuration["AxlisGraphQL:Endpoint"]!;
-        o.ApiKey   = builder.Configuration["AxlisGraphQL:ApiKey"]!;
-    });
+    // AddAxlisORM/AddAxlisORMGraphQL take an Action<TOptions> delegate, not an
+    // IConfiguration directly — bind from config explicitly if you're driving
+    // options from appsettings.json as shown above.
+    .AddAxlisORM(o => builder.Configuration.GetSection(AxlisOptions.SectionName).Bind(o))
+    .AddAxlisORMGraphQL(o => builder.Configuration.GetSection(AxlisGraphQLOptions.SectionName).Bind(o));
 
 var app = builder.Build();
 
@@ -73,9 +68,9 @@ app.Run();
 Create one class per Sitecore template, deriving from `ExtendedItem`:
 
 ```csharp
-using Axlis.Attributes;
-using Axlis.Core;
-using Axlis.Core.FieldTypes;
+using Axlis.ORM.Attributes;
+using Axlis.ORM.Core;
+using Axlis.ORM.Core.FieldTypes;
 
 [SitecoreTemplate("{6D1CD897-1936-4A3A-A511-289A94C2A7B1}")]
 public class DictionaryEntry : ExtendedItem

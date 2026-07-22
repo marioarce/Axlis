@@ -15,7 +15,7 @@ namespace Axlis.ORM.GraphQL;
 /// <summary>
 /// Default <see cref="ISitecoreService"/> implementation that fetches Sitecore items via the
 /// Axlis GraphQL transport layer. Performs no caching; caching is handled by
-/// <c>SitecoreItemCacheManager</c> in the <c>Axlis</c> facade package.
+/// <c>SitecoreItemCacheManager</c> in the <c>Axlis.ORM</c> facade package.
 /// </summary>
 public sealed class SitecoreService : ISitecoreService
 {

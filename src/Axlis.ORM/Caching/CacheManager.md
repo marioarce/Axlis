@@ -3,7 +3,7 @@
 **File:** `src/Axlis.ORM/Caching/SitecoreItemCacheManager.cs`
 **Consumed by:** `SitecoreFacade` (every cacheable fetch method), `SitecoreItemLazyLoader` (`src/Axlis.ORM/LazyLoader/SitecoreItemLazyLoader.cs`)
 **Wraps:** `ICacheService` from `PowerCSharp.Feature.Cache.Abstractions` (external dependency, treated as a black box — see this project's `CLAUDE.md`)
-**Status:** Fragile zone — referenced from root [`CLAUDE.md`](../../CLAUDE.md) §4 and this project's `CLAUDE.md`.
+**Status:** Fragile zone — referenced from root [`CLAUDE.md`](../../../CLAUDE.md) §4 and this project's `CLAUDE.md`.
 
 ## Purpose
 
@@ -24,7 +24,7 @@ Stampede-safe(*) in-memory cache for `IItem` results, sitting between `SitecoreF
 1. Any change to the dual-indexing write logic requires updated tests in `tests/Axlis.ORM.Tests/SitecoreItemCacheManagerTests.cs` covering: write-then-read-by-ID, write-then-read-by-path, and the null-miss non-caching behavior.
 2. Do not add caching of `null`/not-found results without an explicit, separate opt-in mechanism and a call-out in `CHANGELOG.md` — this is a behavioral change every consumer depends on implicitly.
 3. If you touch `SitecoreItemLazyLoader` (which routes lazy `Axes` fetches through this same cache manager), re-read [`../../Axlis.ORM.Core/AxesLazyLoading.md`](../../Axlis.ORM.Core/AxesLazyLoading.md) — the sync-over-async wrapper there depends on this class's async methods completing promptly (a cache implementation that blocks or is slow directly affects that hazard).
-4. Keep `docs/orm/Caching.md` in sync if you change the public shape of `GetOrCreateAsync`/`InvalidateAsync` — and fix the stale `AddAxlis()`/`AddAxlisGraphQL()` naming in that doc if you're already editing it (see this project's `CLAUDE.md` "Naming Note").
+4. Keep `docs/orm/Caching.md` in sync if you change the public shape of `GetOrCreateAsync`/`InvalidateAsync` — this doc previously drifted to stale `AddAxlis()`/`AddAxlisGraphQL()` naming after a rename (since fixed); don't let it happen again (see this project's `CLAUDE.md` "Naming Note").
 
 ## Verification Checklist for Any Change Here
 

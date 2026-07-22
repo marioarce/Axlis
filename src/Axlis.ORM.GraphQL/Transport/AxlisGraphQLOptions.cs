@@ -2,7 +2,7 @@ namespace Axlis.ORM.GraphQL.Transport;
 
 /// <summary>
 /// Configuration options for the Axlis GraphQL HTTP transport.
-/// Bind to the <c>"AxlisGraphQL"</c> configuration section via <c>AddAxlisGraphQL()</c>.
+/// Bind to the <c>"AxlisGraphQL"</c> configuration section via <c>AddAxlisORMGraphQL()</c>.
 /// </summary>
 public sealed class AxlisGraphQLOptions
 {

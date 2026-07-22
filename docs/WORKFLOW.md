@@ -102,36 +102,18 @@ git push -u origin release/v0.2.0
   - Deletes the release branch
 - Main branch is tagged with release version
 
-## 📋 Current Branch Structure
+## 📋 Branch Structure (Illustrative)
 
 ```
 main                    ← Production releases
 ├── develop             ← Integration branch
-    ├── feature/ecosystem-phase-1-renaming ← Current feature work
-    └── feature/future-features
-└── release/v0.2.0     ← Release preparation (temporary)
+    ├── feature/<N>-<short-description>  ← active feature work
+    └── release/vX.Y.Z                   ← release prep (temporary)
 ```
 
 ## 🎯 Commit Message Convention
 
-We use conventional commits for clarity with scope:
-
-- `feat: scope: New features`
-- `fix: scope: Bug fixes`
-- `docs: scope: Documentation changes`
-- `style: scope: Code formatting (no functional changes)`
-- `refactor: scope: Code refactoring`
-- `test: scope: Adding or updating tests`
-- `chore: scope: Maintenance tasks`
-
-### Examples
-```bash
-ecosystem: Rename projects to Axlis.ORM.*
-ecosystem: Update namespaces to Axlis.ORM.*
-ecosystem: Create Axlis.ORM.sln
-fix: orm: Resolve null reference exception in ItemConverter
-docs: orm: Update README with installation instructions
-```
+Commit format is defined once, in [`CONTRIBUTING.md`](../CONTRIBUTING.md#commit-format) — that file is the source of truth. In short: Conventional Commits with a mandatory GitHub issue scope, `<type>(#<issue>): <imperative summary>` (e.g. `fix(#41): correct IsFullyLoaded check when parent is root`). Don't duplicate the type/example list here — if it drifts from `CONTRIBUTING.md`, `CONTRIBUTING.md` wins.
 
 ## 🚀 CI/CD Automation
 
@@ -215,26 +197,10 @@ Release Branch → PR to main → Build/Test → Pack/Publish → Auto-delete re
 7. **Test thoroughly before creating PRs**
 8. **Release branches trigger automatic NuGet publishing**
 9. **Branches are automatically deleted after successful merges**
-10. **Use scope in commit messages** (e.g., `ecosystem`, `orm`, `context`)
+10. **Reference the GitHub issue in every commit** — `<type>(#N): ...` per `CONTRIBUTING.md`
 
-## 🔄 Current Workflow Status
+## 🔄 Workflow Status
 
-✅ **Completed:**
-- Initial ORM implementation
-- All projects created and configured
-- Comprehensive tests
-- CI/CD pipeline set up
-- Ecosystem re-engineering planning completed
+The GitFlow process, CI build/test pipeline, and tag-triggered NuGet publish (`release.yml`) described above are live and in active use — this is not aspirational. The `Axlis.ORM.*` package rename (tracked historically as the "ecosystem re-engineering" phases 1–7) is complete; see `CHANGELOG.md` for what shipped.
 
-📋 **Ready for Use:**
-- Complete GitFlow workflow with automation
-- Release process with automatic NuGet publishing
-- Branch cleanup and repository maintenance
-- Full CI/CD pipeline with proper triggers
-
-🎯 **Next Steps:**
-1. Execute ecosystem re-engineering (Phase 1-7)
-2. Create release branch for v0.2.0 when ready
-3. Test complete workflow with actual release
-4. Verify automatic NuGet publishing functionality
-5. Validate branch cleanup automation
+This section intentionally does not track a point-in-time task list — a process doc that says "next steps: do the rename" outlives the rename and goes stale (this section did exactly that once already). Track in-flight work via GitHub Issues/Projects, not here.

@@ -1,13 +1,13 @@
-# Axlis.Core
+# Axlis.ORM.Core
 
 ![Axlis Banner](https://raw.githubusercontent.com/marioarce/Axlis/refs/heads/main/assets/banner.png)
 
-Domain model and ORM core for the [Axlis](https://github.com/marioarce/Axlis) Sitecore Headless GraphQL ORM. Targets `net8.0`.
+Domain model and ORM core for [Axlis.ORM](https://github.com/marioarce/Axlis), the Sitecore Headless GraphQL ORM. Targets `net8.0`.
 
 ## Install
 
 ```
-dotnet add package Axlis.Core
+dotnet add package Axlis.ORM.Core
 ```
 
 ## What's included
@@ -51,4 +51,4 @@ public class ArticlePage : ExtendedItem
 }
 ```
 
-See the [Templates Guide](https://github.com/marioarce/Axlis/blob/main/docs/Templates.md) and the [Axlis repository](https://github.com/marioarce/Axlis) for full documentation.
+See the [Templates Guide](https://github.com/marioarce/Axlis/blob/main/docs/orm/Templates.md) and the [Axlis repository](https://github.com/marioarce/Axlis) for full documentation.

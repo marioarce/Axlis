@@ -70,7 +70,7 @@ Before marking a PR ready for review:
 - [ ] `dotnet build --configuration Release` passes with **0 warnings, 0 errors**.
 - [ ] `dotnet test --configuration Release` passes.
 - [ ] All public APIs have XML doc comments.
-- [ ] No Honda/Acura/Vehicle/ProductDivision/OnePlatform references in shipped code.
+- [ ] No copyright references in shipped code.
 - [ ] PR title follows the same Conventional Commit format.
 - [ ] PR body includes `Closes #<N>` to auto-close the issue on merge.
 
@@ -78,7 +78,7 @@ Before marking a PR ready for review:
 
 ## Code Style
 
-- File-scoped namespaces (`namespace Axlis.Core;`).
+- File-scoped namespaces (`namespace Axlis.ORM.Core;`).
 - Private fields: `_camelCase`.
 - `ConfigureAwait(false)` in all library `await` calls.
 - Typed `ILogger<T>` — never `Console.Write` in library code.

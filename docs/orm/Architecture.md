@@ -6,23 +6,23 @@ Axlis is a Sitecore Headless GraphQL ORM for .NET 8. It is structured as a famil
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                        Axlis                            │
+│                       Axlis.ORM                          │
 │  SitecoreFacade  SitecoreItemCacheManager  DI wiring    │
 └───────────────────────────┬─────────────────────────────┘
                             │
 ┌───────────────────────────▼─────────────────────────────┐
-│                     Axlis.GraphQL                        │
+│                    Axlis.ORM.GraphQL                      │
 │  HttpGraphQLTransport  SitecoreService  QueryBuilder     │
 └───────────────────────────┬─────────────────────────────┘
                             │
 ┌───────────────────────────▼─────────────────────────────┐
-│                     Axlis.Core                           │
+│                     Axlis.ORM.Core                        │
 │  Item  ExtendedItem  AxesAdapter  ItemConverter          │
 │  Field types  Built-in templates                         │
 └───────────────────────────┬─────────────────────────────┘
                             │
 ┌───────────────────────────▼─────────────────────────────┐
-│                  Axlis.Abstractions                      │
+│                 Axlis.ORM.Abstractions                   │
 │  IItem  ISitecoreFacade  ISitecoreService                │
 │  IGraphQLTransport  IAxlisDiagnosticsSink                │
 │  AxlisResult<T>  SitecoreMetadata  AxlisDiagnostics      │
@@ -33,24 +33,24 @@ Axlis is a Sitecore Headless GraphQL ORM for .NET 8. It is structured as a famil
 
 ## Package Responsibilities
 
-### `Axlis.Abstractions`
+### `Axlis.ORM.Abstractions`
 Contracts only. Targets `netstandard2.0` + `net8.0`. Zero runtime dependencies (beyond `Microsoft.Extensions.Logging.Abstractions`). Safe to reference from any layer including .NET Framework Sitecore projects.
 
-### `Axlis.Core`
+### `Axlis.ORM.Core`
 De-branded Sitecore domain model. Converts raw GraphQL JSON into typed `Item` graphs. Provides the `ExtendedItem` base class, all field types, `AxesAdapter`, and built-in Sitecore templates.
 
-### `Axlis.GraphQL`
+### `Axlis.ORM.GraphQL`
 Default `IGraphQLTransport` provider. Uses raw `HttpClient` + `System.Text.Json` — no third-party GraphQL library. Implements `ISitecoreService` with single-item and batch alias queries.
 
-### `Axlis`
-Top-level consumer package. Provides the `ISitecoreFacade` implementation, `SitecoreItemCacheManager`, `SitecoreItemLazyLoader`, and all `AddAxlis*` DI extension methods.
+### `Axlis.ORM`
+Top-level consumer package. Provides the `ISitecoreFacade` implementation, `SitecoreItemCacheManager`, `SitecoreItemLazyLoader`, and all `AddAxlisORM*` DI extension methods.
 
 ---
 
 ## Key Design Decisions
 
 ### Transport abstraction
-`IGraphQLTransport` / `IGraphQLTransportFactory` live in `Axlis.Abstractions`, making the default `HttpClient` transport swappable. Consumers can register any custom `IGraphQLTransport`.
+`IGraphQLTransport` / `IGraphQLTransportFactory` live in `Axlis.ORM.Abstractions`, making the default `HttpClient` transport swappable. Consumers can register any custom `IGraphQLTransport`.
 
 ### Two API flavors
 Following the PowerCSharp Cache convention:
@@ -67,8 +67,8 @@ Following the PowerCSharp Cache convention:
 `[SitecoreTemplate]` and `[SitecoreField]` attributes are codegen-ready today. A future Roslyn/CLI generator can introspect them without breaking changes.
 
 ### Target frameworks
-- `Axlis.Abstractions` — `netstandard2.0;net8.0`
-- `Axlis.Core`, `Axlis.GraphQL`, `Axlis` — `net8.0`
+- `Axlis.ORM.Abstractions` — `netstandard2.0;net8.0`
+- `Axlis.ORM.Core`, `Axlis.ORM.GraphQL`, `Axlis.ORM` — `net8.0`
 
 ---
 

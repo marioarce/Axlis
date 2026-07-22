@@ -7,6 +7,6 @@ namespace Axlis.ORM.Site;
 /// </summary>
 public interface ISiteContext
 {
-    /// <summary>Gets the key that identifies the current site (e.g. "honda", "acura", "my-brand").</summary>
+    /// <summary>Gets the key that identifies the current site (e.g. "my-site", "my-brand").</summary>
     string SiteKey { get; }
 }

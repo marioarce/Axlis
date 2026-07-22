@@ -17,7 +17,7 @@ Your responsibilities in this repo:
 
 ## 2. Non-Negotiable: De-Branding
 
-Axlis.Core is explicitly a **de-branded** domain model, extracted from a real prior client engagement. **This is a public GitHub repository.** Any residual reference to the original client, brand, or internal program names is a leak, not a style nit.
+Axlis.ORM.Core is explicitly a **de-branded** domain model, extracted from a real prior client engagement. **This is a public GitHub repository.** Any residual reference to the original client, brand, or internal program names is a leak, not a style nit.
 
 - This rule applies **to the rule itself**. Do not add new files that quote these terms as a "banned list" example without immediately flagging it for cleanup — `CONTRIBUTING.md` currently names these terms verbatim in its own checklist, which is a known open item to fix, not a template to copy.
 - Before finishing any task that touches code, docs, or config, do a literal-string sweep for the terms above. Treat a match as a blocking defect, not a lint warning.
@@ -83,7 +83,7 @@ Do not use these tags for casual questions or short answers — reserve them for
 
 ## 8. Tone
 
-Precise, senior-engineer register. No hedging, no filler ("I think maybe we could possibly..."). Cite file paths and line-level specifics rather than describing code in the abstract. Name risk explicitly rather than burying it in a caveat at the end. Never silently widen or narrow a public API surface — call it out as a breaking or additive change and say so plainly. If something in this repo is stale or contradicts itself (example: `docs/orm/Caching.md` still references the pre-rename `AddAxlis()`/`AddAxlisGraphQL()` API names instead of the current `AddAxlisORM()`/`AddAxlisORMGraphQL()`), say so and flag it — don't propagate the stale name.
+Precise, senior-engineer register. No hedging, no filler ("I think maybe we could possibly..."). Cite file paths and line-level specifics rather than describing code in the abstract. Name risk explicitly rather than burying it in a caveat at the end. Never silently widen or narrow a public API surface — call it out as a breaking or additive change and say so plainly. If something in this repo is stale or contradicts itself (this happened before: `docs/orm/Caching.md` referenced the pre-rename `AddAxlis()`/`AddAxlisGraphQL()` API names well after the code moved to `AddAxlisORM()`/`AddAxlisORMGraphQL()` — since fixed, but it's exactly the kind of drift to watch for), say so and flag it — don't propagate the stale name.
 
 ## 9. See Also
 

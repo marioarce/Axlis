@@ -1,6 +1,6 @@
 # Caching
 
-Axlis caching is powered by `ICacheService` from `PowerCSharp.Feature.Cache.Abstractions`. The default registration (`AddAxlis()`) installs a `NoOpCacheService` so the library works out-of-the-box without any cache dependency. For production use, swap in a real provider.
+Axlis caching is powered by `ICacheService` from `PowerCSharp.Feature.Cache.Abstractions`. The default registration (`AddAxlisORM()`) installs a `NoOpCacheService` so the library works out-of-the-box without any cache dependency. For production use, swap in a real provider.
 
 ---
 
@@ -62,7 +62,7 @@ builder.Services.AddAxlis(o =>
 
 ### NoOp (default)
 
-Registered automatically by `AddAxlis()` if no `ICacheService` is already registered. Does not cache anything — every request hits the GraphQL endpoint. Suitable for development or testing.
+Registered automatically by `AddAxlisORM()` if no `ICacheService` is already registered. Does not cache anything — every request hits the GraphQL endpoint. Suitable for development or testing.
 
 ### BitFaster (recommended for production)
 
@@ -74,23 +74,23 @@ dotnet add package PowerCSharp.Feature.Cache.BitFaster
 
 ```csharp
 builder.Services
-    .AddBitFasterCache()   // registers ICacheService — must come BEFORE AddAxlis()
-    .AddAxlis()
-    .AddAxlisGraphQL(...);
+    .AddBitFasterCache()   // registers ICacheService — must come BEFORE AddAxlisORM()
+    .AddAxlisORM()
+    .AddAxlisORMGraphQL(...);
 ```
 
 ### Custom provider
 
-Implement `ICacheService` from `PowerCSharp.Feature.Cache.Abstractions` and register it before `AddAxlis()`:
+Implement `ICacheService` from `PowerCSharp.Feature.Cache.Abstractions` and register it before `AddAxlisORM()`:
 
 ```csharp
 builder.Services
     .AddSingleton<ICacheService, MyCustomCacheService>()
-    .AddAxlis()
-    .AddAxlisGraphQL(...);
+    .AddAxlisORM()
+    .AddAxlisORMGraphQL(...);
 ```
 
-Because ASP.NET Core DI resolves the **first** matching registration, any `ICacheService` registered before `AddAxlis()` takes precedence over the built-in `NoOpCacheService` fallback.
+Because ASP.NET Core DI resolves the **first** matching registration, any `ICacheService` registered before `AddAxlisORM()` takes precedence over the built-in `NoOpCacheService` fallback.
 
 ---
 

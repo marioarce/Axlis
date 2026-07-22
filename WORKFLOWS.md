@@ -59,7 +59,7 @@ This is the highest-blast-radius category of change in the repo — a regression
    ```
    All three must be clean before proceeding — this mirrors exactly what `release.yml`'s `build-and-test` job will run.
 6. **De-branding sweep across the full diff since the last tag**, not just this branch's commits — releases are the last line of defense before the code is public/downloadable as a package artifact.
-7. **Documentation pass.** Confirm `docs/orm/*.md` and package `README.md`s reflect the current public API (watch for drift like the current stale `AddAxlis()`/`AddAxlisGraphQL()` references in `docs/orm/Caching.md` that predate the `*.ORM.*` rename — fix these as part of the release, don't ship known-stale docs).
+7. **Documentation pass.** Confirm `docs/orm/*.md` and package `README.md`s reflect the current public API (this repo has shipped with stale naming before — `docs/orm/Caching.md` referenced pre-rename `AddAxlis()`/`AddAxlisGraphQL()` well after the `*.ORM.*` rename; now fixed, but re-check on every release, don't ship known-stale docs).
 8. **PR `release/vX.Y.Z` → `main`.** Body includes release notes summarizing the changelog section. Requires review + passing status checks (branch protection).
 9. **Merge triggers automation.** On merge to `main`: tag `vX.Y.Z` → `release.yml` runs `build-and-test` → `pack` → `publish` (NuGet.org + GitHub Packages via `dotnet nuget push --skip-duplicate`) → release branch auto-deleted per WORKFLOW.md.
 10. **Verify published packages.** Confirm all four packages (`Axlis.ORM`, `Axlis.ORM.GraphQL`, `Axlis.ORM.Core`, `Axlis.ORM.Abstractions`) appear at the new version on both NuGet.org and GitHub Packages before announcing the release.

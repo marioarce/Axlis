@@ -1,8 +1,8 @@
-# Axlis.Abstractions
+# Axlis.ORM.Abstractions
 
 ![Axlis Banner](https://raw.githubusercontent.com/marioarce/Axlis/refs/heads/main/assets/banner.png)
 
-Contracts-only package for the [Axlis](https://github.com/marioarce/Axlis) Sitecore Headless GraphQL ORM.
+Contracts-only package for [Axlis.ORM](https://github.com/marioarce/Axlis), the Sitecore Headless GraphQL ORM.
 
 Targets `netstandard2.0` + `net8.0`. Zero third-party dependencies — safe to reference from any layer.
 
@@ -22,7 +22,7 @@ Targets `netstandard2.0` + `net8.0`. Zero third-party dependencies — safe to r
 ## Install
 
 ```
-dotnet add package Axlis.Abstractions
+dotnet add package Axlis.ORM.Abstractions
 ```
 
 See the [Axlis repository](https://github.com/marioarce/Axlis) for full documentation.

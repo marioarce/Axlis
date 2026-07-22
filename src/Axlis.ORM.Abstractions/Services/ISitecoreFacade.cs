@@ -9,7 +9,7 @@ namespace Axlis.ORM.Services;
 ///   <item><description><b>Clean</b> — returns <c>T?</c> directly, logs internally.</description></item>
 ///   <item><description><b>WithResult</b> — returns <see cref="AxlisResult{T}"/> with item, metadata, and diagnostics.</description></item>
 /// </list>
-/// Implemented by <c>SitecoreFacade</c> in the <c>Axlis</c> package.
+/// Implemented by <c>SitecoreFacade</c> in the <c>Axlis.ORM</c> package.
 /// </summary>
 public interface ISitecoreFacade
 {

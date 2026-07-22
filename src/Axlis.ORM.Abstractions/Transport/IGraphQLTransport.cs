@@ -2,7 +2,7 @@ namespace Axlis.ORM.Transport;
 
 /// <summary>
 /// Abstraction for sending GraphQL requests to a Sitecore Headless endpoint.
-/// The default implementation in <c>Axlis.GraphQL</c> uses raw <c>HttpClient</c> + <c>System.Text.Json</c>.
+/// The default implementation in <c>Axlis.ORM.GraphQL</c> uses raw <c>HttpClient</c> + <c>System.Text.Json</c>.
 /// Replace this with your own implementation via DI if needed.
 /// </summary>
 public interface IGraphQLTransport

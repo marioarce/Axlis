@@ -6,7 +6,7 @@ namespace Axlis.ORM.Core;
 /// Converts <see cref="GraphQLItemData"/> trees into <see cref="Item"/> domain objects.
 /// Handles circular-reference protection via a <c>processedIds</c> hash set
 /// that is threaded through recursive calls.
-/// Cache integration is handled externally (by <c>SitecoreService</c> in <c>Axlis.GraphQL</c>).
+/// Cache integration is handled externally (by <c>SitecoreService</c> in <c>Axlis.ORM.GraphQL</c>).
 /// </summary>
 public static class ItemConverter
 {

@@ -5,8 +5,9 @@ namespace Axlis.ORM.Core;
 /// and <see cref="AxesAdapter"/> to lazy-load missing parent/children data.
 /// Replaces the ambient static <c>SitecoreFactory</c> from the original implementation,
 /// making the lazy-fetch seam testable via DI.
-/// Register an implementation in DI (provided by the <c>Axlis</c> package) and
-/// call <see cref="ExtendedItem.Initialize"/> on application startup.
+/// Register an implementation in DI (provided by the <c>Axlis.ORM</c> package) and
+/// call <see cref="ExtendedItem.Initialize"/> on application startup — in practice via
+/// the <c>UseAxlis(IServiceProvider)</c> extension method, which wires this for you.
 /// </summary>
 public interface IItemLazyLoader
 {

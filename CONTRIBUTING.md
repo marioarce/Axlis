@@ -78,7 +78,7 @@ Before marking a PR ready for review:
 
 ## Code Style
 
-- File-scoped namespaces (`namespace Axlis.Core;`).
+- File-scoped namespaces (`namespace Axlis.ORM.Core;`).
 - Private fields: `_camelCase`.
 - `ConfigureAwait(false)` in all library `await` calls.
 - Typed `ILogger<T>` — never `Console.Write` in library code.

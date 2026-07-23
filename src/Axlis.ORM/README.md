@@ -6,6 +6,8 @@ The Sitecore Headless GraphQL ORM for .NET 8 — a strongly-typed, Synthesis-sty
 
 > Part of the [PowerCSharp](https://github.com/marioarce/PowerCSharp) ecosystem. Integrates with `PowerCSharp.Feature.Cache` for stampede-safe item caching.
 
+**Website:** [axlis.dev](https://axlis.dev/)
+
 ---
 
 ## Package Family

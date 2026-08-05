@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
+
+    <!-- NuGet Package Metadata -->
+    <PackageId>Axlis.Customizations.Abstractions</PackageId>
+    <PackageVersion>$(AxlisCustomizationsVersion)</PackageVersion>
+    <Title>Axlis.Customizations — Abstractions</Title>
+    <Description>Shared, Sitecore-free contracts and constants for the Axlis.Customizations family of Sitecore field type and Shell control customizations. Zero third-party dependencies; safe to reference from any project tier.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>csharp;dotnet;sitecore;customizations;axlis;ecosystem;abstractions</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>

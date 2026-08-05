@@ -11,6 +11,23 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
+## [0.3.0] — 2026-08-05
+
+### Added
+
+- Added the `Axlis.Customizations` package family scaffold to the repository:
+  - `Axlis.Customizations.Abstractions` (`netstandard2.0` + `net8.0`) with shared constants for customization controls.
+  - `Axlis.Customizations.Controls.Sitecore102` (`net48`) with the first Sitecore Shell control implementation: `QueryableTreeList`.
+  - `Axlis.Customizations.sln` and `Axlis.Customizations.Abstractions.Tests` for isolated family development and testing.
+
+### Changed
+
+- Added `AxlisCustomizationsVersion` to centralized version management in `Directory.Build.props`.
+- Added root `nuget.config` with Sitecore feed support required to restore Sitecore 10.2 package dependencies for customizations.
+- Updated repository and workflow documentation for the new package family, including release SOP coverage in `WORKFLOWS.md`.
+
+---
+
 ## [0.2.0] — 2026-07-10
 
 ### Changed
@@ -78,6 +95,7 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
-[Unreleased]: https://github.com/marioarce/Axlis/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/marioarce/Axlis/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/marioarce/Axlis/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/marioarce/Axlis/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/marioarce/Axlis/releases/tag/v0.1.0

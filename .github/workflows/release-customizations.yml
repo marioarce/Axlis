@@ -81,9 +81,27 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: Publish to NuGet
-      run: dotnet nuget push ./packages/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+      shell: pwsh
+      run: |
+        $packages = Get-ChildItem -Path ./packages -Filter *.nupkg -File
+        if (-not $packages) {
+          throw "No .nupkg files found in ./packages"
+        }
+
+        foreach ($package in $packages) {
+          dotnet nuget push $package.FullName --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+        }
       env:
         NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
 
     - name: Publish to GitHub Packages
-      run: dotnet nuget push ./packages/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/marioarce/index.json --skip-duplicate
+      shell: pwsh
+      run: |
+        $packages = Get-ChildItem -Path ./packages -Filter *.nupkg -File
+        if (-not $packages) {
+          throw "No .nupkg files found in ./packages"
+        }
+
+        foreach ($package in $packages) {
+          dotnet nuget push $package.FullName --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/marioarce/index.json --skip-duplicate
+        }

@@ -25,10 +25,6 @@ jobs:
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
-    - name: Configure Sitecore source (optional auth)
-      if: ${{ secrets.SITECORE_NUGET_USERNAME != '' && secrets.SITECORE_NUGET_PASSWORD != '' }}
-      run: dotnet nuget update source sitecore --source https://nuget.sitecore.com/resources/v3/index.json --username "${{ secrets.SITECORE_NUGET_USERNAME }}" --password "${{ secrets.SITECORE_NUGET_PASSWORD }}" --store-password-in-clear-text --configfile nuget.config
-
     - name: Restore
       run: dotnet restore Axlis.Customizations.sln
 
@@ -51,10 +47,6 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
-
-    - name: Configure Sitecore source (optional auth)
-      if: ${{ secrets.SITECORE_NUGET_USERNAME != '' && secrets.SITECORE_NUGET_PASSWORD != '' }}
-      run: dotnet nuget update source sitecore --source https://nuget.sitecore.com/resources/v3/index.json --username "${{ secrets.SITECORE_NUGET_USERNAME }}" --password "${{ secrets.SITECORE_NUGET_PASSWORD }}" --store-password-in-clear-text --configfile nuget.config
 
     - name: Restore
       run: dotnet restore Axlis.Customizations.sln

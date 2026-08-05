@@ -3,6 +3,7 @@
     <!-- Centralized version management for Axlis ecosystem packages -->
     <AxlisVersion>0.1.0</AxlisVersion>
     <AxlisORMVersion>0.1.0</AxlisORMVersion>
+    <AxlisCustomizationsVersion>0.1.0</AxlisCustomizationsVersion>
 
     <!-- Common package metadata -->
     <Authors>Mario Arce</Authors>

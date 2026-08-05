@@ -32,6 +32,19 @@ The first component in the Axlis ecosystem — a Sitecore Headless GraphQL ORM f
 
 See [Axlis.ORM Documentation](src/Axlis.ORM/README.md) for installation and usage.
 
+### Axlis.Customizations
+
+Sitecore Content Editor / Shell control customizations — field types, TreeList variants, and similar Sitecore Client-side extensions. Unlike `Axlis.ORM`, this family targets `net48` directly against real `Sitecore.Kernel`/`Sitecore.Web` packages (from Sitecore's [public NuGet feed](https://nuget.sitecore.com/resources/v3/index.json)), since these customizations extend Sitecore Shell controls that only exist in that runtime. Packages are gated per Sitecore major.minor line (e.g. `.Sitecore102`) rather than floated across versions — see [`Axlis.Customizations.Controls.Sitecore102`'s README](src/Axlis.Customizations/Axlis.Customizations.Controls.Sitecore102/README.md) for why.
+
+**Package Family:**
+
+| Package | Description | TFMs |
+|---|---|---|
+| [`Axlis.Customizations.Abstractions`](https://www.nuget.org/packages/Axlis.Customizations.Abstractions) | Shared, Sitecore-free constants for the customization family | `netstandard2.0` + `net8.0` |
+| [`Axlis.Customizations.Controls.Sitecore102`](https://www.nuget.org/packages/Axlis.Customizations.Controls.Sitecore102) | `QueryableTreeList` and future Content Editor / Shell controls, built against Sitecore 10.2.x | `net48` |
+
+Released independently from `Axlis.ORM` via tags matching `customizations-v*` (not `v*`) — see [`WORKFLOWS.md`](WORKFLOWS.md) SOP 4.
+
 ---
 
 ## Roadmap
@@ -41,6 +54,7 @@ See [Axlis.ORM Documentation](src/Axlis.ORM/README.md) for installation and usag
 - **Axlis.Context** — Thread-safe Sitecore context implementation solving the non-thread-safe nature of `Sitecore.Context` in multi-threaded scenarios
 - **Axlis.Diagnostics** — Enhanced diagnostics and monitoring for Sitecore applications
 - **Axlis.Caching** — Advanced caching strategies for Sitecore data
+- **Axlis.Customizations.{xyz}** — Additional Sitecore field type / Shell control customizations beyond `QueryableTreeList`
 
 ---
 
@@ -58,6 +72,8 @@ See **[Axlis.CleanArchitecture.Sample](https://github.com/marioarce/Axlis.CleanA
 - [Axlis.ORM Templates Guide](docs/orm/Templates.md)
 - [Axlis.ORM Axes Guide](docs/orm/Axes.md)
 - [Axlis.ORM Caching](docs/orm/Caching.md)
+- [Axlis.Customizations.Abstractions Documentation](src/Axlis.Customizations/Axlis.Customizations.Abstractions/README.md)
+- [Axlis.Customizations.Controls.Sitecore102 Documentation](src/Axlis.Customizations/Axlis.Customizations.Controls.Sitecore102/README.md)
 - [GitFlow Workflow](docs/WORKFLOW.md)
 
 ---

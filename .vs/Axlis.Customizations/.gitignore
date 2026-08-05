@@ -1,0 +1,5 @@
+# Visual Studio local workspace artifacts
+# Keep this file tracked, ignore everything else in this directory.
+*
+!.gitignore
+/.vscode/settings.json

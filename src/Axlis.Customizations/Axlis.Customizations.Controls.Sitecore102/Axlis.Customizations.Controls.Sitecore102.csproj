@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+
+    <!-- NuGet Package Metadata -->
+    <PackageId>Axlis.Customizations.Controls.Sitecore102</PackageId>
+    <PackageVersion>$(AxlisCustomizationsVersion)</PackageVersion>
+    <Title>Axlis.Customizations — Controls (Sitecore 10.2.x)</Title>
+    <Description>Axlis Sitecore Content Editor / Shell control customizations, compiled against Sitecore 10.2.x (Sitecore.Kernel + Sitecore.Web [10.2.0,10.3.0)). First control: QueryableTreeList, a query-driven, template-filtering TreeList field. The Field Type item and config include are not shipped automatically — see the package README for manual setup steps.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>csharp;dotnet;sitecore;customizations;axlis;ecosystem;treelist;shell;content-editor</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Version range gates this package to the Sitecore 10.2.x line (see Phase 1 decision D3 /
+         Phase 2 decision D11): a new Sitecore minor gets its own sibling package
+         (Axlis.Customizations.Controls.Sitecore103, etc.), not a wider range on this one. -->
+    <PackageReference Include="Sitecore.Kernel" Version="[10.2.0,10.3.0)" />
+    <PackageReference Include="Sitecore.Web" Version="[10.2.0,10.3.0)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Axlis.Customizations.Abstractions\Axlis.Customizations.Abstractions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+    <!-- Inert by extension (not *.config) so it never auto-applies on install — see Phase 2 decision D10. -->
+    <None Include="App_Config\zzz.Axlis.Customizations.QueryableTreeList.config.template" Pack="true" PackagePath="content\App_Config\zzz.Axlis.Customizations.QueryableTreeList.config.template" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,26 @@
+<!--
+  Axlis.Customizations — QueryableTreeList control-source registration (sample/template).
+
+  This file ships as *.config.template so it is inert on install (Sitecore's config-include
+  watcher only loads *.config files). To enable:
+    1. Copy this file into App_Config/Include/ in your Sitecore instance.
+    2. Rename it to drop the ".template" suffix (keep the leading "zzz." — see note below).
+    3. Confirm the assembly name below matches the Axlis.Customizations.Controls.* package
+       version you actually installed (this template targets .Sitecore102).
+
+  The "zzz." prefix is a Sitecore community load-order convention: Sitecore config includes
+  load alphabetically, so "zzz." patches sort near the end and reliably override earlier ones.
+  It is not a branding artifact — keep it, or rename it to match your own project's config
+  naming convention if you have one.
+-->
+<configuration xmlns:patch="http://www.sitecore.net/xmlconfig/">
+	<sitecore>
+		<controlSources>
+			<source
+			  mode="on"
+			  namespace="Axlis.Customizations.Controls"
+			  assembly="Axlis.Customizations.Controls.Sitecore102"
+			  prefix="Axlis" />
+		</controlSources>
+	</sitecore>
+</configuration>

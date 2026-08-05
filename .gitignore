@@ -43,6 +43,7 @@ ScaffoldingReadMe.txt
 ~$*
 *~
 CodeCoverage/
+/.vscode/settings.json
 
 # Mono/Visual Studio telemetry
 .mono/

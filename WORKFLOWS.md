@@ -1,6 +1,6 @@
 # WORKFLOWS.md — Axlis (Repository-Wide SOPs)
 
-Three standard operating procedures for the recurring task categories in this repo. These are repo-wide; each project also has its own `WORKFLOWS.md` with narrower, project-scoped procedures. Follow `CLAUDE.md` at the same directory level for the standards referenced below (coding style, de-branding, GitFlow).
+Four standard operating procedures for the recurring task categories in this repo. These are repo-wide; each project also has its own `WORKFLOWS.md` with narrower, project-scoped procedures. Follow `CLAUDE.md` at the same directory level for the standards referenced below (coding style, de-branding, GitFlow).
 
 ---
 
@@ -43,7 +43,7 @@ This is the highest-blast-radius category of change in the repo — a regression
 
 ---
 
-## SOP 3 — Cutting a Release
+## SOP 3 — Cutting an Axlis.ORM Release
 
 **When to use:** `develop` has accumulated enough merged work to ship a new `Axlis.ORM` package version to NuGet.org / GitHub Packages.
 
@@ -63,6 +63,31 @@ This is the highest-blast-radius category of change in the repo — a regression
 8. **PR `release/vX.Y.Z` → `main`.** Body includes release notes summarizing the changelog section. Requires review + passing status checks (branch protection).
 9. **Merge triggers automation.** On merge to `main`: tag `vX.Y.Z` → `release.yml` runs `build-and-test` → `pack` → `publish` (NuGet.org + GitHub Packages via `dotnet nuget push --skip-duplicate`) → release branch auto-deleted per WORKFLOW.md.
 10. **Verify published packages.** Confirm all four packages (`Axlis.ORM`, `Axlis.ORM.GraphQL`, `Axlis.ORM.Core`, `Axlis.ORM.Abstractions`) appear at the new version on both NuGet.org and GitHub Packages before announcing the release.
+
+---
+
+## SOP 4 — Cutting an Axlis.Customizations Release
+
+**When to use:** `develop` has accumulated enough merged work to ship a new `Axlis.Customizations` package version (`Axlis.Customizations.Abstractions` and/or `Axlis.Customizations.Controls.Sitecore102`) to NuGet.org / GitHub Packages.
+
+This family is versioned and released **independently** from `Axlis.ORM` — do not reuse the `v*` tag pattern, which is reserved for `Axlis.ORM` and triggers `release.yml`, not this SOP's workflow.
+
+1. **Confirm `develop` is green.** CI (`ci.yml`'s `build-customizations` job) must be passing on the latest `develop` commit.
+2. **Create the release branch from `develop`.** `git checkout develop && git pull && git checkout -b release/customizations-vX.Y.Z`.
+3. **Bump the version in `Directory.Build.props`.** Update `AxlisCustomizationsVersion` — the single source of truth for both packages' `PackageVersion`. Do not touch `AxlisORMVersion`/`AxlisVersion` as part of this release.
+4. **Update `CHANGELOG.md`** with a new dated section for the Customizations family (or a dedicated changelog file, if the two families' histories start to read confusingly interleaved).
+5. **Full local verification.**
+   ```bash
+   dotnet restore Axlis.Customizations.sln
+   dotnet build Axlis.Customizations.sln --configuration Release
+   dotnet test Axlis.Customizations.sln --configuration Release
+   ```
+   This mirrors `release-customizations.yml`'s `build-and-test` job. Note `dotnet test` only exercises `Axlis.Customizations.Abstractions.Tests` — `Axlis.Customizations.Controls.Sitecore102` has no automated tests by design (no Sitecore FakeDb; see its README). Before tagging, also complete that package's **manual verification checklist** against a real Sitecore 10.2.x instance — this is a real release gate, not optional.
+6. **De-branding sweep across the full diff since the last `customizations-v*` tag.** Confirm no `OneAHM`, `SharedLoggerCategory`, or other client-specific strings remain (root `CLAUDE.md` §2) — this family was ported from a prior client engagement, so this check matters here even more than for `Axlis.ORM`.
+7. **Documentation pass.** Confirm both package `README.md`s (Abstractions, Controls.Sitecore102) and the root `README.md`'s Axlis.Customizations section reflect the current API and manual setup steps.
+8. **PR `release/customizations-vX.Y.Z` → `main`.** Body includes release notes. Requires review + passing status checks.
+9. **Merge triggers automation.** On merge to `main`: tag `customizations-vX.Y.Z` → `release-customizations.yml` runs `build-and-test` → `pack` → `publish` (NuGet.org + GitHub Packages) → release branch auto-deleted.
+10. **Verify published packages.** Confirm both packages appear at the new version on NuGet.org and GitHub Packages before announcing.
 
 ---
 

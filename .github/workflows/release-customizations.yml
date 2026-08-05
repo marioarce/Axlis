@@ -1,0 +1,97 @@
+name: Release Customizations
+
+on:
+  push:
+    tags:
+      - 'customizations-v*'
+
+permissions:
+  contents: write
+
+env:
+  DOTNET_VERSION: '8.0.x'
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Configure Sitecore source (optional auth)
+      if: ${{ secrets.SITECORE_NUGET_USERNAME != '' && secrets.SITECORE_NUGET_PASSWORD != '' }}
+      run: dotnet nuget update source sitecore --source https://nuget.sitecore.com/resources/v3/index.json --username "${{ secrets.SITECORE_NUGET_USERNAME }}" --password "${{ secrets.SITECORE_NUGET_PASSWORD }}" --store-password-in-clear-text --configfile nuget.config
+
+    - name: Restore
+      run: dotnet restore Axlis.Customizations.sln
+
+    - name: Build
+      run: dotnet build Axlis.Customizations.sln --no-restore --configuration Release
+
+    - name: Test
+      run: dotnet test Axlis.Customizations.sln --no-build --configuration Release --verbosity normal
+
+  pack:
+    name: Pack NuGet Packages
+    runs-on: windows-latest
+    needs: build-and-test
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Configure Sitecore source (optional auth)
+      if: ${{ secrets.SITECORE_NUGET_USERNAME != '' && secrets.SITECORE_NUGET_PASSWORD != '' }}
+      run: dotnet nuget update source sitecore --source https://nuget.sitecore.com/resources/v3/index.json --username "${{ secrets.SITECORE_NUGET_USERNAME }}" --password "${{ secrets.SITECORE_NUGET_PASSWORD }}" --store-password-in-clear-text --configfile nuget.config
+
+    - name: Restore
+      run: dotnet restore Axlis.Customizations.sln
+
+    - name: Build
+      run: dotnet build Axlis.Customizations.sln --no-restore --configuration Release
+
+    - name: Pack
+      run: dotnet pack Axlis.Customizations.sln --no-build --configuration Release --output ./packages
+
+    - name: Upload packages as artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: nuget-packages-customizations
+        path: ./packages/*.nupkg
+
+  publish:
+    name: Publish to NuGet
+    runs-on: windows-latest
+    needs: pack
+
+    steps:
+    - name: Download packages
+      uses: actions/download-artifact@v4
+      with:
+        name: nuget-packages-customizations
+        path: ./packages
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Publish to NuGet
+      run: dotnet nuget push ./packages/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+      env:
+        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+
+    - name: Publish to GitHub Packages
+      run: dotnet nuget push ./packages/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/marioarce/index.json --skip-duplicate

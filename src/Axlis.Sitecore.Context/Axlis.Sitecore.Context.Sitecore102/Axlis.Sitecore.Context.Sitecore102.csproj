@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+
+    <!-- NuGet Package Metadata -->
+    <PackageId>Axlis.Sitecore.Context.Sitecore102</PackageId>
+    <PackageVersion>$(AxlisSitecoreContextVersion)</PackageVersion>
+    <Title>Axlis.Sitecore.Context — Sitecore 10.2.x adapter</Title>
+    <Description>Thread-safe, per-request replacement for Sitecore.Context.Database, Sitecore.Context.Request, and HttpContext.Current, compiled against Sitecore 10.2.x (Sitecore.Kernel + Sitecore.Web [10.2.0,10.3.0)). Exposes Axlis.Sitecore.Context.Database / .Request / .HttpContext as near drop-in replacements for the non-thread-safe ambient statics. Requires manual Web.config registration — see the package README.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>csharp;dotnet;sitecore;axlis;ecosystem;thread-safety;http-module</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Version range gates this package to the Sitecore 10.2.x line, same convention as
+         Axlis.Customizations.Controls.Sitecore102: a new Sitecore minor gets its own sibling
+         package (Axlis.Sitecore.Context.Sitecore104, etc.), not a wider range on this one. -->
+    <PackageReference Include="Sitecore.Kernel" Version="[10.2.0,10.3.0)" />
+    <PackageReference Include="Sitecore.Web" Version="[10.2.0,10.3.0)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Axlis.Sitecore.Context.Abstractions\Axlis.Sitecore.Context.Abstractions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+    <!-- Inert by extension (not *.config) so it never auto-applies on install — same convention as
+         Axlis.Customizations.Controls.Sitecore102's config template. -->
+    <None Include="App_Config\zzz.Axlis.Sitecore.Context.config.template" Pack="true" PackagePath="content\App_Config\zzz.Axlis.Sitecore.Context.config.template" />
+  </ItemGroup>
+
+</Project>

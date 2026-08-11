@@ -9,6 +9,20 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Added the `Axlis.Sitecore.Context` package family scaffold to the repository:
+  - `Axlis.Sitecore.Context.Abstractions` (`net48`) with `AmbientContextStore<T>`, the Sitecore-free, per-logical-call propagation mechanism (`MarshalByRefObject` + `ILogicalThreadAffinative` + `CallContext`).
+  - `Axlis.Sitecore.Context.Sitecore102` (`net48`) with `Axlis.Sitecore.Context.Database`/`.Request`/`.HttpContext` — a thread-safe, per-request replacement for `Sitecore.Context.Database`, `Sitecore.Context.Request`, and `HttpContext.Current` — plus `SitecoreContextHttpModule`, built against Sitecore 10.2.x.
+  - `Axlis.Sitecore.Context.sln` and `Axlis.Sitecore.Context.Abstractions.Tests` for isolated family development and testing.
+  - `docs/sitecore-context/Architecture.md` explaining why the underlying propagation mechanism is thread-safe.
+
+### Changed
+
+- Added `AxlisSitecoreContextVersion` to centralized version management in `Directory.Build.props`.
+- Added `.github/workflows/release-sitecore-context.yml`, released independently via `sitecore-context-v*` tags.
+- Updated root `README.md` and `CLAUDE.md` for the new package family, including the roadmap distinction between the shipped `Axlis.Sitecore.Context` and the still-reserved, unrelated `Axlis.Context` placeholder name.
+
 ---
 
 ## [0.3.0] — 2026-08-05

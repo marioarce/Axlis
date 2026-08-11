@@ -1,0 +1,20 @@
+<!--
+  Copy this file into your application's App_Config/Include/ folder and drop the ".template"
+  suffix (so it becomes zzz.Axlis.Sitecore.Context.config). The ".template" extension keeps
+  Sitecore's config watcher from loading this file automatically on install — see the package
+  README's "Manual setup" section.
+
+  Ordering: the "zzz." prefix is deliberate — it makes this module's config include sort late
+  among Sitecore's own Include files under most naming conventions, which helps ensure this
+  module is registered after Sitecore's own request-initialization modules in modules.config.
+  Confirm actual module *execution* order in your own modules.config / web.config <modules>
+  section, since include file sort order does not by itself guarantee HttpModule registration
+  order — see the README for the exact caveat.
+-->
+<configuration xmlns:patch="http://www.sitecore.net/xmlconfig/">
+  <system.webServer>
+    <modules>
+      <add name="AxlisSitecoreContextHttpModule" type="Axlis.Sitecore.Hosting.SitecoreContextHttpModule, Axlis.Sitecore.Context.Sitecore102" />
+    </modules>
+  </system.webServer>
+</configuration>

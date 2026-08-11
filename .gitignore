@@ -48,6 +48,9 @@ CodeCoverage/
 # Mono/Visual Studio telemetry
 .mono/
 
+# Visual Studio working folder
+.vs/
+
 # MSBuild Binary and Structured Log
 *.binlog
 

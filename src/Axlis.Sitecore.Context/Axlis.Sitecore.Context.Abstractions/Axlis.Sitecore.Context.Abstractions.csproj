@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- net48-only: the propagation mechanism below is built on System.Runtime.Remoting.Messaging
+         (CallContext, ILogicalThreadAffinative), which does not exist on netstandard2.0 or net8.0.
+         Unlike Axlis.ORM.Abstractions / Axlis.Customizations.Abstractions, this package cannot be
+         framework-agnostic — its entire purpose is a Framework-only propagation primitive. -->
+    <TargetFramework>net48</TargetFramework>
+
+    <!-- NuGet Package Metadata -->
+    <PackageId>Axlis.Sitecore.Context.Abstractions</PackageId>
+    <PackageVersion>$(AxlisSitecoreContextVersion)</PackageVersion>
+    <Title>Axlis.Sitecore.Context — Abstractions</Title>
+    <Description>Sitecore-free, per-logical-call ambient context storage for the Axlis.Sitecore.Context family. Built on MarshalByRefObject + ILogicalThreadAffinative + CallContext, the same mechanism that keeps Sitecore.Context.Database and HttpContext.Current thread-safe in multi-threaded scenarios. No Sitecore or System.Web dependency — safe to unit test with any payload type.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>csharp;dotnet;sitecore;axlis;ecosystem;thread-safety;ambient-context</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>

@@ -45,13 +45,26 @@ Sitecore Content Editor / Shell control customizations — field types, TreeList
 
 Released independently from `Axlis.ORM` via tags matching `customizations-v*` (not `v*`) — see [`WORKFLOWS.md`](WORKFLOWS.md) SOP 4.
 
+### Axlis.Sitecore.Context
+
+A thread-safe, per-request replacement for `Sitecore.Context.Database`, `Sitecore.Context.Request`, and `HttpContext.Current` — all of which are unreliable in multi-threaded scenarios, where they can return `null` mid-request once code hops off the physical thread ASP.NET started the request on. Like `Axlis.Customizations`, this family targets `net48` directly against real `Sitecore.Kernel`/`Sitecore.Web`, gated per Sitecore major.minor line.
+
+**Package Family:**
+
+| Package | Description | TFMs |
+|---|---|---|
+| [`Axlis.Sitecore.Context.Abstractions`](https://www.nuget.org/packages/Axlis.Sitecore.Context.Abstractions) | `AmbientContextStore<T>` — the Sitecore-free, per-logical-call propagation mechanism | `net48` |
+| [`Axlis.Sitecore.Context.Sitecore102`](https://www.nuget.org/packages/Axlis.Sitecore.Context.Sitecore102) | `Axlis.Sitecore.Context.Database`/`.Request`/`.HttpContext` + the capturing HTTP module, built against Sitecore 10.2.x | `net48` |
+
+Released independently via tags matching `sitecore-context-v*`. See [`src/Axlis.Sitecore.Context/Axlis.Sitecore.Context.Sitecore102`'s README](src/Axlis.Sitecore.Context/Axlis.Sitecore.Context.Sitecore102/README.md) for setup, and [`docs/sitecore-context/Architecture.md`](docs/sitecore-context/Architecture.md) for why the underlying mechanism is thread-safe.
+
 ---
 
 ## Roadmap
 
 ### Planned Components
 
-- **Axlis.Context** — Thread-safe Sitecore context implementation solving the non-thread-safe nature of `Sitecore.Context` in multi-threaded scenarios
+- **Axlis.Context** — reserved for a future, more general ambient-context/ecosystem-wiring component; not to be confused with the already-shipped `Axlis.Sitecore.Context` above, which solves the specific `Sitecore.Context` thread-safety problem
 - **Axlis.Diagnostics** — Enhanced diagnostics and monitoring for Sitecore applications
 - **Axlis.Caching** — Advanced caching strategies for Sitecore data
 - **Axlis.Customizations.{xyz}** — Additional Sitecore field type / Shell control customizations beyond `QueryableTreeList`
@@ -74,6 +87,9 @@ See **[Axlis.CleanArchitecture.Sample](https://github.com/marioarce/Axlis.CleanA
 - [Axlis.ORM Caching](docs/orm/Caching.md)
 - [Axlis.Customizations.Abstractions Documentation](src/Axlis.Customizations/Axlis.Customizations.Abstractions/README.md)
 - [Axlis.Customizations.Controls.Sitecore102 Documentation](src/Axlis.Customizations/Axlis.Customizations.Controls.Sitecore102/README.md)
+- [Axlis.Sitecore.Context.Abstractions Documentation](src/Axlis.Sitecore.Context/Axlis.Sitecore.Context.Abstractions/README.md)
+- [Axlis.Sitecore.Context.Sitecore102 Documentation](src/Axlis.Sitecore.Context/Axlis.Sitecore.Context.Sitecore102/README.md)
+- [Axlis.Sitecore.Context Architecture](docs/sitecore-context/Architecture.md)
 - [GitFlow Workflow](docs/WORKFLOW.md)
 
 ---

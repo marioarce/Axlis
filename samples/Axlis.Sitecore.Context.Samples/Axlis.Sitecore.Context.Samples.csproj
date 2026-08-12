@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <RootNamespace>Axlis.Sitecore.Samples</RootNamespace>
+    <AssemblyName>Axlis.Sitecore.Context.Samples</AssemblyName>
+
+    <!-- Not a shipped package: no PackageId/PackageVersion, never packed, never released. -->
+    <IsPackable>false</IsPackable>
+
+    <!-- Overrides from the repo-root Directory.Build.props that don't make sense for an
+         illustrative sample rather than a shipped library. -->
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Same version-gating as Axlis.Sitecore.Context.Sitecore102 itself — this sample targets
+         the same Sitecore 10.2.x line. -->
+    <PackageReference Include="Sitecore.Kernel" Version="[10.2.0,10.3.0)" />
+    <PackageReference Include="Sitecore.Web" Version="[10.2.0,10.3.0)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Axlis.Sitecore.Context\Axlis.Sitecore.Context.Sitecore102\Axlis.Sitecore.Context.Sitecore102.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Framework assemblies: SDK-style net48 projects still require these listed explicitly,
+         unlike net8.0's broader implicit framework references. -->
+    <Reference Include="System.Web" />
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Web.config" />
+    <Content Include="Global.asax" />
+    <Content Include="Pages\AxlisSitecoreContextDemo.aspx" />
+    <None Include="README.md" />
+  </ItemGroup>
+
+</Project>

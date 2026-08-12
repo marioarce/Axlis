@@ -28,34 +28,57 @@ mistake in this illustrative project can never block a real package release.
   Global.asax is wired.
 - `Web.config` — a **minimal, illustrative** config, not a real Sitecore site's Web.config. See the
   comment at the top of that file for exactly what's missing and why.
+- `Web.Debug.config` / `Web.Release.config` — standard Web Application Project config transforms,
+  applied automatically by Visual Studio's Publish workflow based on the selected build
+  configuration.
+- `Properties/AssemblyInfo.cs` — standard WAP assembly metadata (title/description only; this
+  project is never packed or versioned as a NuGet package).
+- `Properties/PublishProfiles/FolderProfile.pubxml` — a starting-point profile for
+  `Build > Publish > Folder`; see "Deploying this sample" below.
 
-## Why this isn't a full Visual Studio "Web Application Project"
+## Project format: a real Visual Studio Web Application Project
 
-This project uses the same SDK-style `.csproj` format as the rest of this repo
-(`Sdk="Microsoft.NET.Sdk"`, matching `Axlis.Customizations.Controls.Sitecore102` and
-`Axlis.Sitecore.Context.Sitecore102`) rather than the older Visual Studio Web Application Project
-format (`ProjectTypeGuids` + `Microsoft.WebApplication.targets`). That older format exists mainly
-for two things this project doesn't need: F5/IIS Express local debugging (there's no local Sitecore
-sandbox to debug against — see "Deploying this sample" below) and MSBuild/Web Deploy publish
-tooling (irrelevant here, since you'll be copying files into a real Sitecore site by hand, not
-publishing this project directly over it). ASP.NET Web Forms compiles `.aspx` markup at runtime
-regardless of which project format built the code-behind assembly, so the simpler, lower-risk
-format is fully sufficient for this project's actual purpose: illustrative, buildable reference
-code.
+This project uses the traditional (non-SDK-style) Visual Studio **Web Application Project** format
+— `ProjectTypeGuids` including `{349c5851-65df-11da-9384-00065b846f21}`, an explicit framework
+`<Reference>` list, and an import of `Microsoft.WebApplication.targets` — rather than the SDK-style
+`Sdk="Microsoft.NET.Sdk"` format used by the rest of this repo's `net48` projects
+(`Axlis.Customizations.Controls.Sitecore102`, `Axlis.Sitecore.Context.Sitecore102`). Those other
+projects are libraries with no deployable web content of their own, so the simpler SDK-style format
+is the right fit for them; this project is a website, and the older WAP format is what unlocks
+Visual Studio's native `Build > Publish > Folder` workflow, config transforms
+(`Web.Debug.config`/`Web.Release.config`), and an actual `IIS`/`IIS Express` project flavor — all of
+which are how you'd realistically get this sample onto a real Sitecore site's IIS instance rather
+than copying files by hand. `PackageReference` (for `Sitecore.Kernel`/`Sitecore.Web`) and
+`ProjectReference` both work identically in this format, as long as no `packages.config` is present
+(it is not).
 
 ## Deploying this sample
 
 There is no Sitecore sandbox in this repo's toolchain (same situation as
 `Axlis.Customizations.Controls.Sitecore102` and `Axlis.Sitecore.Context.Sitecore102` — see their
-READMEs). To actually see this demo run:
+READMEs). To actually see this demo run, either:
+
+**Publish via Visual Studio (recommended):**
+
+1. Register `Axlis.Sitecore.Hosting.SitecoreContextHttpModule` in a real Sitecore 10.2.x site's
+   real `Web.config` — see `Axlis.Sitecore.Context.Sitecore102`'s README, "Manual setup" step 1
+   (this step can't be automated by a publish profile, since it edits a config file this project
+   doesn't own).
+2. In Visual Studio, right-click this project → **Publish** → **New** → **Folder**, and copy
+   [`Properties/PublishProfiles/FolderProfile.pubxml`](Properties/PublishProfiles/FolderProfile.pubxml)
+   as a starting point — replace its placeholder `<publishUrl>` with your target site's real path
+   (its webroot, or a staging folder you then deploy to IIS by your own process) before publishing.
+3. Publish. Request the deployed page directly by its URL (it doesn't go through Sitecore's
+   item/layout resolution — it's a plain `.aspx` file — so no Sitecore content items or templates
+   need to exist for this demo to work).
+
+**Or copy files by hand:**
 
 1. Register `Axlis.Sitecore.Hosting.SitecoreContextHttpModule` in a real Sitecore 10.2.x site's
    real `Web.config` — see `Axlis.Sitecore.Context.Sitecore102`'s README, "Manual setup" step 1.
 2. Copy `Pages/AxlisSitecoreContextDemo.aspx` and its code-behind into that site.
 3. Reference `Axlis.Sitecore.Context.Sitecore102` (and `.Abstractions`) from that site's own project.
-4. Request the page directly by its deployed URL (it doesn't go through Sitecore's item/layout
-   resolution — it's a plain `.aspx` file — so no Sitecore content items or templates need to
-   exist for this demo to work).
+4. Request the page directly by its deployed URL, same as above.
 
 See [`docs/sitecore-context/Architecture.md`](../../docs/sitecore-context/Architecture.md) for why
 the underlying mechanism is thread-safe.

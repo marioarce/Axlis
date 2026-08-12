@@ -58,7 +58,7 @@ A thread-safe, per-request replacement for `Sitecore.Context.Database`, `Sitecor
 
 Released independently via tags matching `sitecore-context-v*`. See [`src/Axlis.Sitecore.Context/Axlis.Sitecore.Context.Sitecore102`'s README](src/Axlis.Sitecore.Context/Axlis.Sitecore.Context.Sitecore102/README.md) for setup, and [`docs/sitecore-context/Architecture.md`](docs/sitecore-context/Architecture.md) for why the underlying mechanism is thread-safe.
 
-A runnable-once-deployed usage example lives in [`samples/Axlis.Sitecore.Context.Samples`](samples/Axlis.Sitecore.Context.Samples/README.md) — an illustrative Sitecore website project with a page that simulates background threads and shows the raw `Sitecore.Context`/`HttpContext.Current` statics going `null` side-by-side with `Axlis.Sitecore.Context` staying correct. Kept in its own solution, outside `Axlis.Sitecore.Context.sln` and its release CI.
+A runnable-once-deployed usage example lives in [`samples/Axlis.Sitecore.Context.Samples`](samples/Axlis.Sitecore.Context.Samples/README.md) — an illustrative Sitecore website project with a page that simulates background threads and shows the raw `Sitecore.Context`/`HttpContext.Current` statics going `null` side-by-side with `Axlis.Sitecore.Context` staying correct. Kept in its own solution, outside `Axlis.Sitecore.Context.sln` and its release CI. **Windows Visual Studio only** (ASP.NET and web development workload) — it's a legacy Web Application Project so it supports `Publish → Folder` to IIS, and will not open or build in Visual Studio for Mac or other cross-platform tooling.
 
 ---
 

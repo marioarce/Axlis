@@ -1,5 +1,12 @@
 # Axlis.Sitecore.Context.Samples
 
+> **Requires Windows Visual Studio** (2022+, with the **ASP.NET and web development** workload).
+> This is the one project in the whole `Axlis` repo that will not open, build, or publish from
+> Visual Studio for Mac, VS Code/OmniSharp, Rider on non-Windows, or the cross-platform `dotnet`
+> CLI — see "Project format" below for why. Opening the solution's folder in Windows Visual Studio
+> with the required workload missing will prompt to install it automatically, via the checked-in
+> [`.vsconfig`](../.vsconfig).
+
 An illustrative Sitecore website project showing how to consume
 [`Axlis.Sitecore.Context.Sitecore102`](../../src/Axlis.Sitecore.Context/Axlis.Sitecore.Context.Sitecore102/README.md)
 from real Sitecore application code. Targets `net48`, references `Sitecore.Kernel`/`Sitecore.Web`
@@ -51,6 +58,17 @@ which are how you'd realistically get this sample onto a real Sitecore site's II
 than copying files by hand. `PackageReference` (for `Sitecore.Kernel`/`Sitecore.Web`) and
 `ProjectReference` both work identically in this format, as long as no `packages.config` is present
 (it is not).
+
+**This is a hard, Windows-only requirement, not just a recommendation.** `Microsoft.WebApplication.targets`
+ships exclusively with Windows Visual Studio's ASP.NET and web development workload — it does not
+exist on any other platform or IDE. Confirmed in practice: this solution fails to load correctly in
+Visual Studio for Mac, because Visual Studio for Mac's project system has no equivalent import and
+never supported classic ASP.NET Web Forms/Web Application Projects at all (it only ever supported
+ASP.NET Core/SDK-style web projects, Xamarin, and .NET MAUI). If you're editing files day-to-day on
+macOS or Linux, that's fine — the source files themselves are plain text — but building, opening the
+solution for real, or publishing needs a Windows machine (or VM) with Visual Studio installed. The
+[`.vsconfig`](../.vsconfig) file next to the `.sln` declares the required workload so Windows
+Visual Studio can offer to install it automatically if missing.
 
 ## Deploying this sample
 

@@ -38,19 +38,13 @@ dotnet add package Axlis.Sitecore.Context.Sitecore102
 
 ## Manual setup (required — nothing below is automated by installing the package)
 
-**1. Register the HTTP module.** A sample registration ships as `content/App_Config/zzz.Axlis.Sitecore.Context.config.template` inside the package (inert — the `.template` suffix keeps Sitecore's config watcher from loading it automatically). Copy it into your `App_Config/Include/` folder and drop the `.template` suffix:
+**1. Register the HTTP module — in your site's real `Web.config`, not an `App_Config` include.** `SitecoreContextHttpModule` implements the standard `System.Web.IHttpModule` interface, so IIS/ASP.NET itself needs to know about it — that registration has to live in the actual `Web.config` that IIS reads (`<system.webServer><modules>`). Sitecore's own `App_Config/Include/*.config` layering system is a *separate* mechanism that only feeds Sitecore's own `<sitecore>` config tree (pipelines, factories, settings); it has no effect on which `IHttpModule`s IIS loads, so a module registration placed there is silently inert. A ready-to-paste snippet ships inside the package as `content/Setup/WebConfigModulesSnippet.xml.template` (inert — the `.template` suffix keeps it from being picked up automatically by anything). Merge its contents into your site's `Web.config`, inside the existing `<system.webServer><modules>` section (create that section if it doesn't already exist):
 
 ```xml
-<configuration xmlns:patch="http://www.sitecore.net/xmlconfig/">
-  <system.webServer>
-    <modules>
-      <add name="AxlisSitecoreContextHttpModule" type="Axlis.Sitecore.Hosting.SitecoreContextHttpModule, Axlis.Sitecore.Context.Sitecore102" />
-    </modules>
-  </system.webServer>
-</configuration>
+<add name="AxlisSitecoreContextHttpModule" type="Axlis.Sitecore.Hosting.SitecoreContextHttpModule, Axlis.Sitecore.Context.Sitecore102" />
 ```
 
-**2. Confirm module ordering.** This module must run *after* Sitecore's own request-initialization modules — otherwise it may capture `Sitecore.Context.Database` before Sitecore has populated it for the request. Verify the effective module order in your own `web.config`/`modules.config` rather than assuming the config include's file-name sort order determines it.
+**2. Confirm module ordering.** This module must run *after* Sitecore's own request-initialization modules — otherwise it may capture `Sitecore.Context.Database` before Sitecore has populated it for the request. `<modules>` entries in `Web.config` run in the order they're listed, so place this `<add>` after Sitecore's own module entries.
 
 **3. Replace call sites.** Swap `Sitecore.Context.Database` → `Axlis.Sitecore.Context.Database`, `Sitecore.Context.Request` → `Axlis.Sitecore.Context.Request`, `HttpContext.Current` → `Axlis.Sitecore.Context.HttpContext`, one call site at a time — there is no compile-time way to flag remaining call sites, so a text search for the old statics after migrating is worth doing.
 

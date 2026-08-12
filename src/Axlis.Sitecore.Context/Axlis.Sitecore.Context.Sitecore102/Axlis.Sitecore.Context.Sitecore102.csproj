@@ -27,8 +27,12 @@
   <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath="\" />
     <!-- Inert by extension (not *.config) so it never auto-applies on install — same convention as
-         Axlis.Customizations.Controls.Sitecore102's config template. -->
-    <None Include="App_Config\zzz.Axlis.Sitecore.Context.config.template" Pack="true" PackagePath="content\App_Config\zzz.Axlis.Sitecore.Context.config.template" />
+         Axlis.Customizations.Controls.Sitecore102's config template. Packed under content\Setup\
+         rather than content\App_Config\: this is a Web.config <modules> snippet, not a Sitecore
+         App_Config include (those are two different config systems — see the file's own header
+         comment and the README's "Manual setup" section). The source file still physically lives
+         under App_Config\ on disk for now; only the packed path was corrected. -->
+    <None Include="App_Config\zzz.Axlis.Sitecore.Context.config.template" Pack="true" PackagePath="content\Setup\WebConfigModulesSnippet.xml.template" />
   </ItemGroup>
 
 </Project>

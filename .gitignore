@@ -63,6 +63,9 @@ CodeCoverage/
 TestResult.xml
 nunit-*.xml
 
+# macOS
+.DS_Store
+
 # Legacy ASP.NET Web Application Project (Windows / Visual Studio only).
 # Axlis.Sitecore.Context.Samples is the one project in this repo that requires
 # Windows Visual Studio (ASP.NET and web development workload) to open, build,

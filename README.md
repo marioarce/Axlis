@@ -4,6 +4,8 @@
 
 [![CI](https://github.com/marioarce/Axlis/actions/workflows/ci.yml/badge.svg)](https://github.com/marioarce/Axlis/actions/workflows/ci.yml)
 [![NuGet](https://img.shields.io/nuget/v/Axlis.ORM?label=Axlis.ORM)](https://www.nuget.org/packages/Axlis.ORM)
+[![NuGet](https://img.shields.io/nuget/v/Axlis.Customizations.Controls.Sitecore102?label=Axlis.Customizations)](https://www.nuget.org/packages/Axlis.Customizations.Controls.Sitecore102)
+[![NuGet](https://img.shields.io/nuget/v/Axlis.Sitecore.Context.Sitecore102?label=Axlis.Sitecore.Context)](https://www.nuget.org/packages/Axlis.Sitecore.Context.Sitecore102)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Website](https://img.shields.io/badge/website-axlis.dev-blue)](https://axlis.dev/)
 

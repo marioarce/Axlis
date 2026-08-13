@@ -70,6 +70,29 @@ solution for real, or publishing needs a Windows machine (or VM) with Visual Stu
 [`.vsconfig`](../.vsconfig) file next to the `.sln` declares the required workload so Windows
 Visual Studio can offer to install it automatically if missing.
 
+**Visual Studio 2026 (v18.0) note.** Even with the ASP.NET and web development workload installed,
+VS2026's `devenv.exe.config` `VSToolsPath` fallback search paths don't yet account for that
+version's own MSBuild install layout, so the default resolution can miss
+`Microsoft.WebApplication.targets` even though it's present on disk. The `.csproj` works around this
+with an explicit fallback that re-derives `VSToolsPath` from `$(MSBuildExtensionsPath)` (the
+currently-running VS installation's own MSBuild folder) whenever the auto-resolved path doesn't
+actually contain the targets file — see the comment above the `<VSToolsPath>` property in the
+`.csproj` for the full explanation. This has been verified working end-to-end on VS2026.
+
+**Verified.** This sample has been built, published, and run against a real Sitecore 10.2.x CM
+instance on Windows with Visual Studio 2026: the demo page correctly showed the raw
+`Sitecore.Context.Database`/`HttpContext.Current` statics going `NULL` on all five simulated
+background threads while `Axlis.Sitecore.Context.Database`/`.Request` stayed correctly populated —
+confirming the underlying propagation mechanism works against a real Sitecore instance, not just in
+isolation. The publish output also had to be corrected once during that process: the project excludes
+NuGet-restored assemblies (`Sitecore.Kernel`, `Sitecore.Web`, and their transitive dependencies) from
+its own build/publish output via the `AxlisExcludeSitecoreProvidedAssembliesFromOutput` MSBuild
+target, since a real Sitecore site already ships its own matched set of those assemblies —
+publishing this project's independently-restored copies on top caused a `FileLoadException` from
+assembly version drift (see the target's comment in the `.csproj` for specifics). Deploying by hand
+(copying only the `.aspx`/code-behind files, per the second option below) never had this problem,
+since it never copies a `bin/` folder at all.
+
 ## Deploying this sample
 
 There is no Sitecore sandbox in this repo's toolchain (same situation as

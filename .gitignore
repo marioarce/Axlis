@@ -48,6 +48,9 @@ CodeCoverage/
 # Mono/Visual Studio telemetry
 .mono/
 
+# Visual Studio working folder
+.vs/
+
 # MSBuild Binary and Structured Log
 *.binlog
 
@@ -59,3 +62,19 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# macOS
+.DS_Store
+
+# Legacy ASP.NET Web Application Project (Windows / Visual Studio only).
+# Axlis.Sitecore.Context.Samples is the one project in this repo that requires
+# Windows Visual Studio (ASP.NET and web development workload) to open, build,
+# or publish — see samples/Axlis.Sitecore.Context.Samples/README.md. These
+# entries are the subset of the official VisualStudio.gitignore relevant to it;
+# *.pubxml itself (Properties/PublishProfiles/FolderProfile.pubxml) is
+# deliberately NOT ignored — it's a checked-in, credential-free template.
+*.user
+*.pubxml.user
+*.publishsettings
+*.suo
+_PublishedWebsites/

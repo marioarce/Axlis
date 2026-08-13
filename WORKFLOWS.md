@@ -91,6 +91,31 @@ This family is versioned and released **independently** from `Axlis.ORM` — do 
 
 ---
 
+## SOP 5 — Cutting an Axlis.Sitecore.Context Release
+
+**When to use:** `develop` has accumulated enough merged work to ship a new `Axlis.Sitecore.Context` package version (`Axlis.Sitecore.Context.Abstractions` and/or `Axlis.Sitecore.Context.Sitecore102`) to NuGet.org / GitHub Packages.
+
+This family is versioned and released **independently** from `Axlis.ORM` and `Axlis.Customizations` — do not reuse either family's tag pattern (`v*` or `customizations-v*`); this family's tag pattern is `sitecore-context-v*`, which triggers `release-sitecore-context.yml`, not `release.yml` or `release-customizations.yml`.
+
+1. **Confirm `develop` is green.** CI (`ci.yml`'s `build-sitecore-context` job) must be passing on the latest `develop` commit.
+2. **Create the release branch from `develop`.** `git checkout develop && git pull && git checkout -b release/sitecore-context-vX.Y.Z`.
+3. **Bump the version in `Directory.Build.props`.** Update `AxlisSitecoreContextVersion` — the single source of truth for both packages' `PackageVersion`. Do not touch `AxlisORMVersion`/`AxlisCustomizationsVersion`/`AxlisVersion` as part of this release.
+4. **Update `CHANGELOG.md`** with a new dated section covering this family's changes since the last `sitecore-context-v*` tag, following the same shared-timeline convention as the `[0.3.0]`/`[0.4.0]` entries (a top-level dated section can cover a single family's release even though the ecosystem version number and this family's own `PackageVersion` are tracked independently — see the "Note on versioning" under `[0.2.0]` for why that divergence is intentional and not a bug).
+5. **Full local verification.**
+   ```bash
+   dotnet restore Axlis.Sitecore.Context.sln
+   dotnet build Axlis.Sitecore.Context.sln --configuration Release
+   dotnet test Axlis.Sitecore.Context.sln --configuration Release
+   ```
+   This mirrors `release-sitecore-context.yml`'s `build-and-test` job. Note `dotnet test` only exercises `Axlis.Sitecore.Context.Abstractions.Tests` — `Axlis.Sitecore.Context.Sitecore102` has no automated tests by design (no Sitecore FakeDb; see its README). Before tagging, also complete that package's **manual verification checklist** (its README's "Manual setup" step 4) against a real Sitecore 10.2.x instance — this is a real release gate, not optional. The `samples/Axlis.Sitecore.Context.Samples` project (Windows Visual Studio only — see its README) is the fastest way to run that checklist end-to-end: it has a working thread-safety demo page that exercises both packages against a real Sitecore instance in one request.
+6. **De-branding sweep across the full diff since the last `sitecore-context-v*` tag.** Confirm no reference to the original client/program this package's propagation mechanism was ported from, or any of its internal type/assembly names, remains anywhere — code, comments, docs, or this changelog entry (root `CLAUDE.md` §2). This family was ported from a prior client engagement, so this check matters here even more than for `Axlis.ORM`.
+7. **Documentation pass.** Confirm both package `README.md`s (`Abstractions`, `Sitecore102`), `docs/sitecore-context/Architecture.md`, and the root `README.md`'s `Axlis.Sitecore.Context` section reflect the current public API and manual setup steps. If the Samples project changed, confirm its own `README.md` still accurately describes what's verified and how to deploy it.
+8. **PR `release/sitecore-context-vX.Y.Z` → `main`.** Body includes release notes. Requires review + passing status checks.
+9. **Merge triggers automation.** On merge to `main`: tag `sitecore-context-vX.Y.Z` → `release-sitecore-context.yml` runs `build-and-test` → `pack` → `publish` (NuGet.org + GitHub Packages) → release branch auto-deleted.
+10. **Verify published packages.** Confirm both packages appear at the new version on NuGet.org and GitHub Packages before announcing.
+
+---
+
 ## Cross-Cutting Gate (applies to every SOP above)
 
 Before any PR is marked ready, per `CONTRIBUTING.md`:

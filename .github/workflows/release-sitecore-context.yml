@@ -1,0 +1,107 @@
+name: Release Sitecore Context
+
+on:
+  push:
+    tags:
+      - 'sitecore-context-v*'
+
+permissions:
+  contents: write
+
+env:
+  DOTNET_VERSION: '8.0.x'
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Restore
+      run: dotnet restore Axlis.Sitecore.Context.sln
+
+    - name: Build
+      run: dotnet build Axlis.Sitecore.Context.sln --no-restore --configuration Release
+
+    - name: Test
+      run: dotnet test Axlis.Sitecore.Context.sln --no-build --configuration Release --verbosity normal
+
+  pack:
+    name: Pack NuGet Packages
+    runs-on: windows-latest
+    needs: build-and-test
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Restore
+      run: dotnet restore Axlis.Sitecore.Context.sln
+
+    - name: Build
+      run: dotnet build Axlis.Sitecore.Context.sln --no-restore --configuration Release
+
+    - name: Pack
+      run: dotnet pack Axlis.Sitecore.Context.sln --no-build --configuration Release --output ./packages
+
+    - name: Upload packages as artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: nuget-packages-sitecore-context
+        path: ./packages/*.nupkg
+
+  publish:
+    name: Publish to NuGet
+    runs-on: windows-latest
+    needs: pack
+
+    steps:
+    - name: Download packages
+      uses: actions/download-artifact@v4
+      with:
+        name: nuget-packages-sitecore-context
+        path: ./packages
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Publish to NuGet
+      shell: pwsh
+      run: |
+        $packages = Get-ChildItem -Path ./packages -Filter *.nupkg -File
+        if (-not $packages) {
+          throw "No .nupkg files found in ./packages"
+        }
+
+        foreach ($package in $packages) {
+          dotnet nuget push $package.FullName --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+        }
+      env:
+        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+
+    - name: Publish to GitHub Packages
+      shell: pwsh
+      run: |
+        $packages = Get-ChildItem -Path ./packages -Filter *.nupkg -File
+        if (-not $packages) {
+          throw "No .nupkg files found in ./packages"
+        }
+
+        foreach ($package in $packages) {
+          dotnet nuget push $package.FullName --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/marioarce/index.json --skip-duplicate
+        }

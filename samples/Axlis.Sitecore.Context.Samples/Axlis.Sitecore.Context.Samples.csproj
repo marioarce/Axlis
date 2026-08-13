@@ -1,0 +1,161 @@
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9879CB54-749D-4009-B229-DFEB772360CC}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Axlis.Sitecore.Samples</RootNamespace>
+    <AssemblyName>Axlis.Sitecore.Context.Samples</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+
+    <!-- Not a shipped package: this project family is built and packed via `dotnet pack`/NuGet
+         tooling elsewhere in this repo; this project deliberately has no NuGet packing properties
+         at all and is never part of that pipeline. -->
+    <IsPackable>false</IsPackable>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Legacy Web Application Projects require the framework reference list explicitly — unlike
+         SDK-style net48 projects, there is no implicit framework-assembly resolution here. -->
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Same version-gating as Axlis.Sitecore.Context.Sitecore102 itself — this sample targets
+         the same Sitecore 10.2.x line. Legacy-style projects support PackageReference normally as
+         long as no packages.config is present in this project (it is not). -->
+    <PackageReference Include="Sitecore.Kernel" Version="[10.2.0,10.3.0)" />
+    <PackageReference Include="Sitecore.Web" Version="[10.2.0,10.3.0)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Axlis.Sitecore.Context\Axlis.Sitecore.Context.Sitecore102\Axlis.Sitecore.Context.Sitecore102.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AxlisSitecoreContextDemo.aspx.cs">
+      <DependentUpon>AxlisSitecoreContextDemo.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Pages\AxlisSitecoreContextDemo.aspx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+  </ItemGroup>
+
+  <!-- VS 2026 (v18.0) ships MSBuild under a version-numbered install folder (".../18/<Edition>/...")
+       instead of the classic "...\2022\<Edition>\..." layout, and this VS build's VSToolsPath
+       fallback search paths (in devenv.exe.config) haven't been updated to match, so the default
+       resolution misses the WebApplications targets even though they are installed. Fall back to
+       deriving VSToolsPath from $(MSBuildExtensionsPath), which VS always points at its own,
+       currently-running installation's MSBuild folder regardless of edition or folder-naming
+       scheme, whenever the auto-resolved VSToolsPath doesn't actually have the targets file. -->
+  <PropertyGroup>
+    <VSToolsPath Condition="!Exists('$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets')">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+
+  <!-- This project is a thin sample meant to be deployed into an EXISTING Sitecore 10.2.x site's
+       /bin (see README.md, "Deploying this sample") — it must never copy Sitecore.Kernel,
+       Sitecore.Web, or any of their transitive dependencies (the Microsoft.Extensions.* family,
+       Newtonsoft.Json, Polly, the EnterpriseLibrary/System.Security.* family, etc.) into its own
+       build/publish output. A real Sitecore site already ships its own matched set of those
+       assemblies; copying this project's independently-restored NuGet copies on top of them is
+       exactly what caused a runtime FileLoadException (Microsoft.Extensions.DependencyInjection.
+       Abstractions version drift, 3.1.14.0 vs. the 3.1.0.0 an already-installed Sitecore module
+       expected) the one time this was published straight into a live site. Only this project's
+       own compiled assemblies (via ProjectReference below) should ever land in the target site. -->
+  <Target Name="AxlisExcludeSitecoreProvidedAssembliesFromOutput" AfterTargets="ResolveAssemblyReferences;ResolvePackageAssets">
+    <ItemGroup>
+      <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" Condition="'%(ReferenceCopyLocalPaths.NuGetPackageId)' != ''" />
+    </ItemGroup>
+  </Target>
+
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <!-- Optional local IIS Express convenience only — this sample has no local Sitecore
+             sandbox to run against (see README.md, "Deploying this sample"), so these settings
+             are never actually exercised; they only stop Visual Studio from prompting to
+             configure a web server the first time this project is opened. -->
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+
+</Project>

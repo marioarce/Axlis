@@ -4,6 +4,7 @@
     <AxlisVersion>0.3.0</AxlisVersion>
     <AxlisORMVersion>0.3.0</AxlisORMVersion>
     <AxlisCustomizationsVersion>0.1.0</AxlisCustomizationsVersion>
+    <AxlisSitecoreContextVersion>0.1.0</AxlisSitecoreContextVersion>
 
     <!-- Common package metadata -->
     <Authors>Mario Arce</Authors>

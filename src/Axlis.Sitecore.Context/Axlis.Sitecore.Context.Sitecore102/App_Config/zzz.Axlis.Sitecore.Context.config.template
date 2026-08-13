@@ -1,0 +1,16 @@
+<!--
+  This is a Web.config <system.webServer><modules> snippet — NOT a Sitecore App_Config include,
+  despite this file currently sitting in a folder named "App_Config" on disk (a naming leftover;
+  see the package README for why). Sitecore's App_Config/Include/*.config layering system only
+  feeds Sitecore's own <sitecore> config tree (pipelines, factories, settings) — it has no effect
+  on which System.Web.IHttpModule types IIS/ASP.NET actually loads. That registration has to live
+  in the real Web.config IIS reads. Placing this content under App_Config/Include/ instead would
+  silently do nothing.
+
+  Manual setup: copy the <add> element below into your site's real Web.config, inside the existing
+  <system.webServer><modules> section (create that section if it doesn't already exist). Place it
+  AFTER Sitecore's own module entries — see the package README's "Confirm module ordering" step.
+  The ".template" extension keeps this file itself from being picked up by anything automatically;
+  you are meant to copy its content, not deploy this file as-is.
+-->
+<add name="AxlisSitecoreContextHttpModule" type="Axlis.Sitecore.Hosting.SitecoreContextHttpModule, Axlis.Sitecore.Context.Sitecore102" />

@@ -49,14 +49,14 @@ Released independently from `Axlis.ORM` via tags matching `customizations-v*` (n
 
 ### Axlis.Sitecore.Context
 
-A thread-safe, per-request replacement for `Sitecore.Context.Database`, `Sitecore.Context.Request`, and `HttpContext.Current` — all of which are unreliable in multi-threaded scenarios, where they can return `null` mid-request once code hops off the physical thread ASP.NET started the request on. Like `Axlis.Customizations`, this family targets `net48` directly against real `Sitecore.Kernel`/`Sitecore.Web`, gated per Sitecore major.minor line.
+A thread-safe, per-request replacement for `Sitecore.Context.Database`, `.Request`, `.ContentDatabase`, `.Site`, `.Language`, `.User`, and `HttpContext.Current` — all of which are unreliable in multi-threaded scenarios, where they can return `null` mid-request once code hops off the physical thread ASP.NET started the request on. Like `Axlis.Customizations`, this family targets `net48` directly against real `Sitecore.Kernel`/`Sitecore.Web`, gated per Sitecore major.minor line.
 
 **Package Family:**
 
 | Package | Description | TFMs |
 |---|---|---|
 | [`Axlis.Sitecore.Context.Abstractions`](https://www.nuget.org/packages/Axlis.Sitecore.Context.Abstractions) | `AmbientContextStore<T>` — the Sitecore-free, per-logical-call propagation mechanism | `net48` |
-| [`Axlis.Sitecore.Context.Sitecore102`](https://www.nuget.org/packages/Axlis.Sitecore.Context.Sitecore102) | `Axlis.Sitecore.Context.Database`/`.Request`/`.HttpContext` + the capturing HTTP module, built against Sitecore 10.2.x | `net48` |
+| [`Axlis.Sitecore.Context.Sitecore102`](https://www.nuget.org/packages/Axlis.Sitecore.Context.Sitecore102) | `Axlis.Sitecore.Context.Database`/`.Request`/`.HttpContext`/`.ContentDatabase`/`.Site`/`.Language`/`.User` + the capturing HTTP module, built against Sitecore 10.2.x | `net48` |
 
 Released independently via tags matching `sitecore-context-v*`. See [`src/Axlis.Sitecore.Context/Axlis.Sitecore.Context.Sitecore102`'s README](src/Axlis.Sitecore.Context/Axlis.Sitecore.Context.Sitecore102/README.md) for setup, and [`docs/sitecore-context/Architecture.md`](docs/sitecore-context/Architecture.md) for why the underlying mechanism is thread-safe.
 

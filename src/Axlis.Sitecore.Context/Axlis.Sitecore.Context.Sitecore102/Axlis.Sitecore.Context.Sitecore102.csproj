@@ -7,7 +7,7 @@
     <PackageId>Axlis.Sitecore.Context.Sitecore102</PackageId>
     <PackageVersion>$(AxlisSitecoreContextVersion)</PackageVersion>
     <Title>Axlis.Sitecore.Context — Sitecore 10.2.x adapter</Title>
-    <Description>Thread-safe, per-request replacement for Sitecore.Context.Database, Sitecore.Context.Request, and HttpContext.Current, compiled against Sitecore 10.2.x (Sitecore.Kernel + Sitecore.Web [10.2.0,10.3.0)). Exposes Axlis.Sitecore.Context.Database / .Request / .HttpContext as near drop-in replacements for the non-thread-safe ambient statics. Requires manual Web.config registration — see the package README.</Description>
+    <Description>Thread-safe, per-request replacement for Sitecore.Context.Database, .Request, .ContentDatabase, .Site, .Language, .User, and HttpContext.Current, compiled against Sitecore 10.2.x (Sitecore.Kernel + Sitecore.Web [10.2.0,10.3.0)). Exposes Axlis.Sitecore.Context.Database / .Request / .HttpContext / .ContentDatabase / .Site / .Language / .User as near drop-in replacements for the non-thread-safe ambient statics. Requires manual Web.config registration — see the package README.</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>csharp;dotnet;sitecore;axlis;ecosystem;thread-safety;http-module</PackageTags>
   </PropertyGroup>

@@ -11,6 +11,24 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
+## [0.5.0] — 2026-09-14
+
+### Added
+
+- `Axlis.Sitecore.Context`: added `ContentDatabase`, `Site`, `Language`, and `User` properties, extending the existing `Database`/`Request`/`HttpContext` trio to all seven `Sitecore.Context` members most Sitecore code relies on. Captured once per request in `SitecoreContextHttpModule.OnBeginRequest`, exactly like the original three.
+
+### Changed
+
+- Bumped `AxlisSitecoreContextVersion` to `1.0.0` — the family's first major release. The published `0.1.0` version is not deprecated or removed.
+- Documented the snapshot trade-off for `Site`/`Language`/`User`: unlike `Database`/`Request`/`HttpContext`, these three can legitimately change mid-request (language switch, login/impersonation, site switch), but `Axlis.Sitecore.Context` deliberately keeps serving the value captured at `BeginRequest` for the rest of the request, for thread-safety and consistency with the original three members. Covered in XML docs, both package `README.md`s, and a new section in `docs/sitecore-context/Architecture.md`.
+- Updated the root `README.md`'s `Axlis.Sitecore.Context` section to list all seven replaced statics.
+
+### Fixed
+
+- Fixed 10 pre-existing compiler/analyzer warnings in `AmbientContextStoreTests.cs` (missing XML doc comments, a possible-null-reference return, and unnecessary `ConfigureAwait(false)` calls in test methods) surfaced during local build verification of this release.
+
+---
+
 ## [0.4.0] — 2026-08-12
 
 ### Added
@@ -121,7 +139,8 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
-[Unreleased]: https://github.com/marioarce/Axlis/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/marioarce/Axlis/compare/sitecore-context-v1.0.0...HEAD
+[0.5.0]: https://github.com/marioarce/Axlis/compare/sitecore-context-v0.1.0...sitecore-context-v1.0.0
 [0.4.0]: https://github.com/marioarce/Axlis/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/marioarce/Axlis/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/marioarce/Axlis/compare/v0.1.0...v0.2.0

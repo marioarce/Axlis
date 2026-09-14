@@ -2,7 +2,7 @@
 
 ![Axlis Banner](https://raw.githubusercontent.com/marioarce/Axlis/refs/heads/main/assets/banner.png)
 
-A thread-safe, per-request replacement for `Sitecore.Context.Database`, `Sitecore.Context.Request`, and `HttpContext.Current`, for [Axlis.Sitecore.Context](https://github.com/marioarce/Axlis), compiled against **Sitecore 10.2.x** (`Sitecore.Kernel` + `Sitecore.Web`, both `[10.2.0,10.3.0)`).
+A thread-safe, per-request replacement for `Sitecore.Context.Database`, `.Request`, `.ContentDatabase`, `.Site`, `.Language`, `.User`, and `HttpContext.Current`, for [Axlis.Sitecore.Context](https://github.com/marioarce/Axlis), compiled against **Sitecore 10.2.x** (`Sitecore.Kernel` + `Sitecore.Web`, both `[10.2.0,10.3.0)`).
 
 Targets `net48`. This is a Sitecore-version-gated package by design — a future Sitecore 10.3/10.4/etc. line ships as a sibling package (`Axlis.Sitecore.Context.SitecoreXXX`), not a wider version range on this one.
 
@@ -16,9 +16,15 @@ Targets `net48`. This is a Sitecore-version-gated package by design — a future
   - `Axlis.Sitecore.Context.Database` — replaces `Sitecore.Context.Database`
   - `Axlis.Sitecore.Context.Request` — replaces `Sitecore.Context.Request` (raw `System.Web.HttpRequest`)
   - `Axlis.Sitecore.Context.HttpContext` — replaces `HttpContext.Current` (raw `System.Web.HttpContext`)
-- `Axlis.Sitecore.Hosting.SitecoreContextHttpModule` — the `IHttpModule` that captures these once per request.
+  - `Axlis.Sitecore.Context.ContentDatabase` — replaces `Sitecore.Context.ContentDatabase`
+  - `Axlis.Sitecore.Context.Site` — replaces `Sitecore.Context.Site` (raw `Sitecore.Sites.SiteContext`)
+  - `Axlis.Sitecore.Context.Language` — replaces `Sitecore.Context.Language` (raw `Sitecore.Globalization.Language`)
+  - `Axlis.Sitecore.Context.User` — replaces `Sitecore.Context.User` (raw `Sitecore.Security.Accounts.User`)
+- `Axlis.Sitecore.Hosting.SitecoreContextHttpModule` — the `IHttpModule` that captures all seven of these once per request.
 
-All three properties fall back gracefully if no request context was ever captured (e.g. code running on a background thread or at application start-up): they try the real `Sitecore.Context`/`HttpContext.Current` directly, and return `null` only if that is also unavailable. No exceptions are thrown for the "nothing available" case.
+All seven properties fall back gracefully if no request context was ever captured (e.g. code running on a background thread or at application start-up): they try the real `Sitecore.Context`/`HttpContext.Current` directly, and return `null` only if that is also unavailable. No exceptions are thrown for the "nothing available" case.
+
+**Snapshot semantics for `Site`, `Language`, and `User`.** All seven properties are captured once, at the very start of the request (`BeginRequest`), and keep returning that same snapshot for the rest of the request — that's what makes them thread-safe. `Database`/`Request`/`HttpContext` are effectively fixed for a request's lifetime anyway, so this isn't a practical trade-off for them. `Site`, `Language`, and especially `User` are different: it's common for application code to deliberately change the real `Sitecore.Context.Language` (rendering a specific language variant), `.Site` (a site-context switch), or `.User` (a login or impersonation) partway through a request. If your code does that and needs to see the new value later in the *same* request, read the raw `Sitecore.Context.Site` / `.Language` / `.User` directly at that call site — `Axlis.Sitecore.Context.Site` / `.Language` / `.User` will keep returning the value captured at `BeginRequest` for the rest of the request, by design, for consistency with the other four properties.
 
 **A note on the namespace.** Every other package in the Axlis ecosystem uses a C# namespace equal to its NuGet `PackageId` (minus any Sitecore-version suffix). This package is the one deliberate exception: the whole point of its API is to be a near drop-in replacement for `Sitecore.Context.Database`, so the type is `Axlis.Sitecore.Context` (namespace `Axlis.Sitecore`, class `Context`) rather than `Axlis.Sitecore.Context.Context`. If you need both `Sitecore.Context` and `Axlis.Sitecore.Context` in the same file while migrating, use a `using` alias, e.g. `using AxlisContext = Axlis.Sitecore.Context;`.
 
@@ -50,9 +56,10 @@ dotnet add package Axlis.Sitecore.Context.Sitecore102
 
 **4. Verify** (manual — there is no automated test coverage for this package; see "Testing" below):
 - Install into a real Sitecore 10.2.x instance with the module registered as above.
-- Confirm `Axlis.Sitecore.Context.Database` / `.Request` / `.HttpContext` are non-null mid-request.
+- Confirm `Axlis.Sitecore.Context.Database` / `.Request` / `.HttpContext` / `.ContentDatabase` / `.Site` / `.Language` / `.User` are non-null mid-request.
 - Confirm they return `null` (not throw) outside any request once the `Sitecore.Context`/`HttpContext.Current` fallback is also unavailable.
 - Confirm no state bleeds between two rapid, back-to-back requests served by the same pooled thread.
+- Confirm `Site` / `Language` / `User` reflect the value captured at `BeginRequest` and do **not** change if application code deliberately switches site/language, or logs in/impersonates, later in the same request — this validates the documented snapshot trade-off above, not a bug to chase.
 
 ## Testing
 

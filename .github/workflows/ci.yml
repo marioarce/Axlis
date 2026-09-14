@@ -40,3 +40,47 @@ jobs:
         with:
           name: coverage
           path: ./coverage
+
+  build-customizations:
+    name: Build & Test (Customizations)
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore
+        run: dotnet restore Axlis.Customizations.sln
+
+      - name: Build
+        run: dotnet build Axlis.Customizations.sln --no-restore --configuration Release
+
+      - name: Test
+        run: dotnet test Axlis.Customizations.sln --no-build --configuration Release --verbosity normal
+
+  build-sitecore-context:
+    name: Build & Test (Sitecore Context)
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore
+        run: dotnet restore Axlis.Sitecore.Context.sln
+
+      - name: Build
+        run: dotnet build Axlis.Sitecore.Context.sln --no-restore --configuration Release
+
+      - name: Test
+        run: dotnet test Axlis.Sitecore.Context.sln --no-build --configuration Release --verbosity normal

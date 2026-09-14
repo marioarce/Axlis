@@ -4,6 +4,10 @@ using Axlis.Sitecore.Abstractions;
 
 namespace Axlis.Sitecore.Context.Abstractions.Tests;
 
+/// <summary>
+/// Unit tests for <see cref="AmbientContextStore{T}"/> — the generic, Sitecore-free propagation
+/// mechanism behind the whole Axlis.Sitecore.Context family.
+/// </summary>
 public class AmbientContextStoreTests
 {
     private sealed class Payload
@@ -16,6 +20,10 @@ public class AmbientContextStoreTests
         public string Value { get; }
     }
 
+    /// <summary>
+    /// A store with nothing set yet returns <see langword="null"/> from
+    /// <see cref="AmbientContextStore{T}.Current"/>.
+    /// </summary>
     [Fact]
     public void Current_WithNothingSet_ReturnsNull()
     {
@@ -24,6 +32,10 @@ public class AmbientContextStoreTests
         Assert.Null(store.Current);
     }
 
+    /// <summary>
+    /// A value set via <see cref="AmbientContextStore{T}.Set"/> is returned by a subsequent read
+    /// of <see cref="AmbientContextStore{T}.Current"/>.
+    /// </summary>
     [Fact]
     public void Set_ThenCurrent_ReturnsTheSameValue()
     {
@@ -35,6 +47,9 @@ public class AmbientContextStoreTests
         Assert.Same(payload, store.Current);
     }
 
+    /// <summary>
+    /// <see cref="AmbientContextStore{T}.Clear"/> removes a previously set value.
+    /// </summary>
     [Fact]
     public void Clear_RemovesTheValue()
     {
@@ -46,6 +61,10 @@ public class AmbientContextStoreTests
         Assert.Null(store.Current);
     }
 
+    /// <summary>
+    /// A value set before an <c>await</c> is still visible after the continuation resumes,
+    /// including on a different pooled thread.
+    /// </summary>
     [Fact]
     public async Task Set_SurvivesAcrossAnAwaitContinuation()
     {
@@ -56,12 +75,16 @@ public class AmbientContextStoreTests
         var payload = new Payload("survives-the-hop");
         store.Set(payload);
 
-        await Task.Delay(10).ConfigureAwait(false);
+        await Task.Delay(10);
         await Task.Yield();
 
         Assert.Same(payload, store.Current);
     }
 
+    /// <summary>
+    /// Concurrent logical calls sharing the same slot name never observe each other's captured
+    /// value.
+    /// </summary>
     [Fact]
     public async Task ConcurrentLogicalCalls_DoNotLeakIntoEachOther()
     {
@@ -72,10 +95,10 @@ public class AmbientContextStoreTests
         // across concurrent requests in the first place.
         var store = new AmbientContextStore<Payload>(nameof(ConcurrentLogicalCalls_DoNotLeakIntoEachOther));
 
-        async Task<string> RunOneAsync(string expected)
+        async Task<string?> RunOneAsync(string expected)
         {
             store.Set(new Payload(expected));
-            await Task.Delay(5).ConfigureAwait(false);
+            await Task.Delay(5);
             return store.Current?.Value;
         }
 
@@ -83,7 +106,7 @@ public class AmbientContextStoreTests
             .Select(i => RunOneAsync("call-" + i))
             .ToArray();
 
-        var results = await Task.WhenAll(tasks).ConfigureAwait(false);
+        var results = await Task.WhenAll(tasks);
 
         for (var i = 0; i < results.Length; i++)
         {
